@@ -1,695 +1,444 @@
 import { useEffect, useRef, useState } from "react";
-import HeroCanvas from "./components/HeroCanvas.jsx";
 
 const NAV = [
-  { href: "#background", label: "项目背景" },
-  { href: "#case", label: "主案例" },
-  { href: "#about", label: "关于" },
-  { href: "#projects", label: "精选项目" },
-  { href: "#strengths", label: "个人优势" },
-  { href: "#contact", label: "联系" },
+  { href: "#main-case", label: "主案例" },
+  { href: "#agent", label: "Agent" },
+  { href: "#sub-cases", label: "副案例" },
+  { href: "#projects", label: "项目集" },
+  { href: "#about", label: "关于我" },
 ];
 
-const STATS = [
-  { num: "20+", label: "已落地游戏项目" },
-  { num: "64", label: "主流宣发渠道适配" },
-  { num: "614", label: "场景数据集条目" },
-  { num: "128", label: "单次任务最高产能" },
-  { num: "90%", label: "业务验收一次通过率" },
-  { num: "95%", label: "兜底后可用率" },
-  { num: "65%", label: "素材生产效率提升" },
-  { num: "70%+", label: "核心资产复用率" },
-];
-
-const PROJECTS = [
-  {
-    img: "/projects/回流.png",
-    name: "游戏营销素材批量生产",
-    desc: "按游戏与渠道配置文案、奖励与玩法类型后批量生成。将渠道规格与批量流程产品化，把人工逐张制作升级为用户自助批量生成。",
-    tags: ["64 渠道", "A/B 双版", "任务可恢复", "场景数据集"],
-  },
-  {
-    img: "/projects/分镜.png",
-    name: "分镜助手与视频生成",
-    desc: "AI 分镜生成、镜头编辑、素材引用与多角度参考图，与视频生成链路打通，采用异步任务状态推进。",
-    tags: ["AI 分镜", "素材引用", "视频生成", "异步任务"],
-  },
-  {
-    img: "/projects/logo.png",
-    name: "LOGO 创作模块",
-    desc: "支持图生图微调、多尺寸批量延展、透明底输出与名称入画，提供跨项目风格参考与多模型选型。",
-    tags: ["图生图", "透明底", "批量延展", "多模型"],
-  },
-  {
-    img: "/projects/H5.png",
-    name: "H5 组件生成",
-    desc: "以原型骨架图约束比例，实现切图与布局匹配，提示词风格跟随 KV 参考图，输出可直接使用的 H5 长图。",
-    tags: ["原型约束", "切图匹配", "风格跟随"],
-  },
-  {
-    img: "/projects/无限画布.png",
-    name: "可视化节点画布",
-    desc: "支持图片与视频节点上传、连线生成与项目持久化，刷新后恢复视口与已存项目状态。",
-    tags: ["节点编排", "项目持久化", "状态恢复"],
-  },
-  {
-    img: "/projects/智能扩图.png",
-    name: "智能扩图与局部重绘",
-    desc: "以 mask 标记编辑区域实现局部重绘，复用 inpaint 管线，支持剪贴板导入与并发限流。",
-    tags: ["局部重绘", "mask 编辑", "并发限流"],
-  },
-  {
-    img: "/projects/角色三视图.png",
-    name: "角色三视图生成",
-    desc: "支持单角色与批量双模式，锁定身材比例并规避非人角色拟人化，批量失败槽位标记化且任务可恢复。",
-    tags: ["双模式", "比例锁定", "任务可恢复"],
-  },
-  {
-    img: "/projects/模板替换.png",
-    name: "模板替换",
-    desc: "将动效模板、图层编排与渠道规格抽象为标准能力，推动动态素材从少量定制走向用户自助批量供给。",
-    tags: ["标准能力", "图层编排", "批量供给"],
-  },
-];
-
-const STRENGTHS = [
-  {
-    title: "产品规划与落地",
-    desc: "具备需求分析、业务流程梳理、产品原型、Spec、需求评审、项目推进、产品验收及上线迭代的完整经验。",
-  },
-  {
-    title: "业务场景理解",
-    desc: "理解游戏营销投放场景下 64 个宣发渠道的规格约束与转化职责，将经验型投放策略沉淀为可配置的场景数据集。",
-  },
-  {
-    title: "AI 产品机制设计",
-    desc: "将高阶参数收敛为智能默认项，并为边缘失败场景设计 A/B 双版生成、单渠道重生成、模型切换等兜底机制。",
-  },
-  {
-    title: "质量成本平衡",
-    desc: "根据任务质量要求及模型能力边界设计分层路由策略，在维持素材良品率的前提下控制单次调用成本。",
-  },
-  {
-    title: "Agent 工作流编排",
-    desc: "定义任务拆解、工具调用、状态反馈、异常处理与结果交付规则，将分散操作整合为统一任务入口。",
-  },
-  {
-    title: "跨团队协作推进",
-    desc: "协同运营、美术与研发推进模块上线，通过用户反馈记录及任务路径分析驱动迭代与效果验收。",
-  },
-];
-
-const CASE_RESULT = [
-  { num: "20+", unit: "款", label: "已落地游戏项目" },
-  { num: "64", unit: "个", label: "宣发渠道规格适配" },
-  { num: "128", unit: "张", label: "单次任务最高产能" },
-  { num: "70", unit: "%", label: "单张调用成本降低" },
+const HERO_METRICS = [
+  { value: "20+", label: "已落地项目" },
+  { value: "90%", label: "业务验收一次通过率" },
+  { value: "70%", label: "素材生成成本降低" },
+  { value: "70%+", label: "核心资产复用率" },
 ];
 
 const PAINS = [
   {
-    n: "01",
-    k: "规格适配",
-    then: "每个渠道单独切图，尺寸与安全区人工比对。",
-    now: "64 个渠道规格内建，生成即合规。",
+    no: "01",
+    title: "高质量很慢",
+    text: "人工或半 AI 制作一张素材至少 20 分钟；批量投放时，2–3 人往往要投入大半天。",
+    tag: "产能瓶颈",
   },
   {
-    n: "02",
-    k: "文案与字效",
-    then: "字效、排版与文案逐项手动调整。",
-    now: "场景策略按渠道自动匹配文案与字效。",
+    no: "02",
+    title: "多样性不足",
+    text: "同一套视觉跨渠道反复切图，难以形成足够的 A/B 方案，投放策略受制作能力限制。",
+    tag: "策略瓶颈",
   },
   {
-    n: "03",
-    k: "视觉多样性",
-    then: "单一视觉方案跨渠道复用，效果单一。",
-    now: "A/B 双版生成，多样性内建于流程。",
+    no: "03",
+    title: "人工合成易错",
+    text: "字体、奖励、Logo、安全区和渠道规格都要逐项核对，重复劳动多，返工风险高。",
+    tag: "质量瓶颈",
+  },
+];
+
+const OLD_FLOW = ["理解需求", "生成底图", "手动挑图", "合成字体/奖励", "逐渠道切图", "逐张检查交付"];
+const NEW_FLOW = ["选择游戏与场景", "匹配渠道策略", "批量生成 A/B 版本", "固定资产分层合成", "自动规格适配", "校验、恢复与下载"];
+
+const COMPARE = [
+  {
+    tone: "old",
+    eyebrow: "PAST / 旧流程",
+    title: "依赖人工经验",
+    lead: "能够做出高质量，但无法稳定规模化。",
+    bullets: ["一张 ≥20 分钟", "字体、奖励、Logo 人工合成", "跨渠道主要依赖切图", "过程不可恢复，返工成本高"],
+    footer: "结果：质量与产能二选一",
   },
   {
-    n: "04",
-    k: "产能与沉淀",
-    then: "产能受人力线性约束，经验难以复用。",
-    now: "单次任务 12-15 分钟交付，策略可沉淀。",
-  },
-];
-
-const VERSUS = [
-  { dim: "产出方式", a: "单张生成，逐次试错", b: "批量生成，单次最多 128 张" },
-  { dim: "参数门槛", a: "提示词与模型参数需人工配置", b: "高阶参数收敛为智能默认项" },
-  { dim: "规格适配", a: "生成后人工裁切适配", b: "64 个渠道规格与安全区内建" },
-  { dim: "品牌资产", a: "LOGO 与奖励存在重绘风险", b: "固定资产分层合成，不参与生成", key: true },
-  { dim: "交付状态", a: "半成品，需二次加工", b: "可直接进入投放" },
-];
-
-const LAYER_DEFAULT = [
-  "智能默认项",
-  "六类投放策略自动匹配",
-  "渠道规格自动适配",
-  "按任务要求自动选择模型",
-];
-
-const LAYER_CONTROL = [
-  "A/B 双版生成",
-  "失败自矫正",
-  "单渠道重生成",
-  "模型切换与任务状态反馈",
-];
-
-const FLOW = [
-  {
-    n: "01",
-    t: "配置输入",
-    d: "选择游戏与渠道，输入文案、奖励与玩法信息。",
+    tone: "generic",
+    eyebrow: "GENERIC AI / 通用 AI",
+    title: "能生成，不能交付",
+    lead: "模型解决了“出图”，没有解决真实生产约束。",
+    bullets: ["不知道 64 个渠道规格", "难以锁定品牌资产与安全区", "单张试错，缺少批量任务状态", "失败后没有业务级兜底"],
+    footer: "结果：得到半成品，仍需二次加工",
   },
   {
-    n: "02",
-    t: "自动匹配与生成",
-    d: "匹配渠道规格与场景策略，按质量要求路由模型，批量生成 A/B 双版。",
-  },
-  {
-    n: "03",
-    t: "校验与交付",
-    d: "自动检查与失败兜底，按渠道预览、重生成与下载。",
+    tone: "system",
+    eyebrow: "FLOWX / 自研系统",
+    title: "把经验变成生产线",
+    lead: "把渠道、场景、资产、质量与恢复机制产品化。",
+    bullets: ["64 渠道规格与 307 条场景提示词", "A/B 双版本，单批最高 128 张", "品牌资产固定分层合成", "任务可见、可恢复、可单渠道重生"],
+    footer: "结果：15–20 分钟完成一批交付",
   },
 ];
 
-const STRATEGY = ["玩法", "颜值", "福利", "情怀", "紧迫感", "社交"];
-
-const TAKEAWAYS = [
-  "AI 产品的首要工作不是开放参数，而是收敛默认路径。",
-  "质量机制需与失败恢复机制同步设计。",
-  "模型选型应服务业务风险等级，而非追求单一模型效果。",
-  "经验须经结构化与可迭代设计，才能成为可复用的产品资产。",
+const MAIN_RESULTS = [
+  { value: "10", unit: "款", label: "游戏落地" },
+  { value: "64", unit: "个", label: "渠道规格适配" },
+  { value: "128", unit: "张", label: "单批最高产能" },
+  { value: "15–20", unit: "min", label: "含奖励合成的批次交付" },
+  { value: "94%+", unit: "", label: "生成良品率" },
+  { value: "70%", unit: "", label: "素材生成成本降低" },
 ];
 
-const METRICS = [
-  { lab: "业务验收一次通过率", val: "90", unit: "%", pct: 90 },
-  { lab: "兜底后可用率", val: "95", unit: "%", pct: 95 },
-  { lab: "单张调用成本降低", val: "70", unit: "%", pct: 70 },
+const PROJECTS = [
+  { no: "01", title: "AI 分镜助手", desc: "从脚本到镜头结构、参考素材与视频生成任务，形成可编辑的异步生产链路。", tags: ["AI 分镜", "视频生成", "异步任务"] },
+  { no: "02", title: "H5 组件生成", desc: "用原型骨架约束比例和布局，把 KV 风格迁移到可直接使用的活动长图。", tags: ["原型约束", "布局匹配", "风格跟随"] },
+  { no: "03", title: "可视化节点画布", desc: "支持图像、视频节点编排与项目持久化，让复杂生成过程可观察、可复用。", tags: ["节点编排", "状态持久化", "工作流"] },
+  { no: "04", title: "智能扩图与局部重绘", desc: "通过 Mask 编辑和并发限流，将局部修正沉淀为可控、可恢复的生成任务。", tags: ["Inpaint", "Mask", "任务恢复"] },
+  { no: "05", title: "角色三视图生成", desc: "兼顾单角色与批量模式，锁定身体比例并为失败任务保留可重试槽位。", tags: ["一致性", "批量生成", "失败兜底"] },
+  { no: "06", title: "Logo 创作模块", desc: "支持透明底、多尺寸延展和多模型选型，适配跨项目的品牌创作需求。", tags: ["透明底", "多尺寸", "多模型"] },
 ];
 
-function CaseHead({ eyebrow, title, em, tail, sub }) {
-  return (
-    <div className="case-head center">
-      {eyebrow && <div className="case-eyebrow">{eyebrow}</div>}
-      <h3 className="case-h">
-        {title}
-        {em && <> <i className="em-serif">{em}</i></>}
-        {tail}
-      </h3>
-      {sub && <p className="case-sub">{sub}</p>}
-    </div>
-  );
-}
+const STRENGTHS = [
+  ["01", "业务问题抽象", "从真实生产瓶颈出发，把隐性的人工经验转化为可配置规则、默认路径与产品边界。"],
+  ["02", "AI 机制设计", "围绕模型能力边界设计路由、兜底、恢复与质量验收，而不是只包装一次模型调用。"],
+  ["03", "复杂流程产品化", "把多工具、多角色、多状态的协作过程，收敛为用户能够理解和稳定使用的工作流。"],
+  ["04", "跨团队落地", "协同运营、美术和研发推进需求评审、原型、交付验收与数据反馈，持续迭代。"],
+];
 
 function useReveal() {
-  const ref = useRef(null);
+  const root = useRef(null);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-      { threshold: 0.12 }
+    const nodes = root.current?.querySelectorAll(".reveal") ?? [];
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("visible")),
+      { threshold: 0.08 }
     );
-    const targets = el.querySelectorAll(".reveal");
-    targets.forEach((t) => io.observe(t));
-    return () => targets.forEach((t) => io.unobserve(t));
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
   }, []);
-  return ref;
+  return root;
+}
+
+function Placeholder({ title, note = "待替换真实产品截图", ratio = "wide" }) {
+  return (
+    <div className={`placeholder ${ratio}`} role="img" aria-label={`${title}占位图`}>
+      <div className="ph-grid" />
+      <span className="ph-index">IMAGE PLACEHOLDER</span>
+      <div className="ph-center">
+        <span className="ph-icon">＋</span>
+        <strong>{title}</strong>
+        <small>{note}</small>
+      </div>
+    </div>
+  );
 }
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-      <div className="nav-inner">
-        <a className="nav-logo" href="#top">ZZH<b>®</b></a>
-        <div className="nav-links">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href}>{n.label}</a>
-          ))}
-        </div>
-        <a className="nav-cta" href="mailto:3062282106@qq.com">联系我</a>
+      <a className="brand" href="#top"><i /> ZZH · AI PRODUCT</a>
+      <div className="nav-links">
+        {NAV.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
       </div>
+      <a className="nav-contact" href="mailto:3062282106@qq.com">联系我 ↗</a>
     </nav>
   );
 }
 
-function SectionHead({ title, em, sub }) {
+function ChapterHead({ index, eyebrow, title, highlight, desc }) {
   return (
-    <div className="sec-head reveal">
-      <h2 className="sec-title">
-        {title}
-        {em && <> <i className="em-serif">{em}</i></>}
-      </h2>
-      {sub && <p className="sec-sub">{sub}</p>}
+    <header className="chapter-head reveal">
+      <div className="chapter-index">{index}</div>
+      <div>
+        <span className="eyebrow">{eyebrow}</span>
+        <h3>{title} {highlight && <em>{highlight}</em>}</h3>
+        {desc && <p>{desc}</p>}
+      </div>
+    </header>
+  );
+}
+
+function FlowLane({ title, tone, items }) {
+  return (
+    <div className={`flow-lane ${tone}`}>
+      <div className="lane-label">{title}</div>
+      <div className="lane-steps">
+        {items.map((item, index) => (
+          <div className="lane-step" key={item}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <b>{item}</b>
+            {index < items.length - 1 && <i>→</i>}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function App() {
-  const ref = useReveal();
+  const root = useReveal();
   return (
-    <div ref={ref} id="top">
+    <div ref={root} id="top">
       <Nav />
 
-      {/* 1. HERO */}
-      <section className="hero" id="hero">
-        <div className="hero-grid" />
-        <div className="hero-glow" />
-        <HeroCanvas />
-        <div className="hero-planet" />
-
-        <span className="hero-spark plus" style={{ left: "12%", top: "13%", animationDelay: "0s" }}>+</span>
-        <span className="hero-spark plus" style={{ left: "12.5%", top: "54%", animationDelay: "1.4s" }}>+</span>
-        <span className="hero-spark plus" style={{ right: "13%", top: "56%", animationDelay: "2.1s" }}>+</span>
-        <span className="hero-spark star" style={{ right: "31%", top: "26%", animationDelay: "0.7s" }}>✦</span>
-        <span className="hero-spark star" style={{ left: "31%", top: "34%", animationDelay: "1.9s" }}>✦</span>
-
-        <div className="hero-inner">
-          <h1 className="hero-title">
-            <span className="line bold">从 0 到 1</span>
-            <span className="line serif-italic scribble">
-              把 AI 想法
-              <svg className="ellipse" viewBox="0 0 300 120" aria-hidden="true" preserveAspectRatio="none">
-                <path d="M 196 10 C 262 16, 294 36, 292 58 C 289 88, 208 110, 122 110 C 44 110, 6 88, 8 62 C 10 36, 62 15, 128 11" />
-              </svg>
-              <span className="scribble-sparks">✦<span className="s2">✦</span></span>
-            </span>
-            <span className="line bold">变成可用产品</span>
-          </h1>
-          <a className="hero-cta" href="#projects">查看精选项目</a>
-        </div>
-
-        <p className="hero-sub">
-          张喆涵 <i className="serif-italic">是</i> AI 产品经理 <i className="serif-italic">/</i> AI 运营{" "}
-          <i className="serif-italic">/</i> AI 应用开发<i className="serif-italic">，把</i>{" "}
-          <span className="em-sans">6+ 家大模型</span> <i className="serif-italic">整合为</i>{" "}
-          标准化的<i className="serif-italic">批量素材生产流程</i><i className="serif-italic">。</i>
-        </p>
-      </section>
-
-      {/* 2. 项目背景 */}
-      <section className="bg-sec" id="background">
-        <div className="container">
-          <div className="bg-grid">
-            <div className="bg-copy reveal">
-              <h2 className="bg-title">
-                参与网易游戏 AI 应用平台建设，<br />
-                <span className="thin">负责游戏营销素材自动化模块的产品方案。</span>
-              </h2>
-              <div className="bg-body">
-                <p>
-                  平台面向游戏运营与设计团队，解决通用 AI 难适配内部模型、固定素材规格及品牌规范的问题。每款游戏有各自的角色、画风与品牌规范，每个渠道有固定尺寸与构图安全区，运营用户则不熟悉提示词与模型参数配置。
-                </p>
-                <p>
-                  通过用户反馈记录及任务路径分析，定位参数理解成本高、生成失败后缺少指引、跨工具操作繁琐等问题，推动智能默认、异常兜底及任务状态反馈等机制落地，降低 AI 工具使用门槛。
-                </p>
-              </div>
-              <div className="bg-facts">
-                <div className="bg-fact">
-                  <span className="k">服务对象</span>
-                  <span className="v">游戏运营与设计团队</span>
-                </div>
-                <div className="bg-fact">
-                  <span className="k">我的角色</span>
-                  <span className="v">产品方案、业务流程梳理、交互原型、效果验收与迭代推进</span>
-                </div>
-                <div className="bg-fact">
-                  <span className="k">产品机制</span>
-                  <span className="v">智能默认、异常兜底、任务状态反馈</span>
-                </div>
+      <main>
+        <section className="hero section-pad">
+          <div className="hero-glow" />
+          <div className="container hero-layout">
+            <div className="hero-copy reveal">
+              <span className="eyebrow">AI PRODUCT MANAGER · PORTFOLIO 2026</span>
+              <h1>把一次生成，<br />设计成一套<br /><em>可运行的系统。</em></h1>
+              <p>我关注的不只是模型能不能生成，而是团队能否在真实业务约束下，稳定、规模化地完成交付。</p>
+              <div className="hero-actions">
+                <a className="button primary" href="#main-case">查看主案例 ↓</a>
+                <a className="button ghost" href="#projects">浏览项目集</a>
               </div>
             </div>
-
-            <div className="bg-shot reveal">
-              <figure className="shot3d">
-                <div className="shot3d-glow" />
-                <div className="shot3d-frame">
-                  <div className="shot3d-back" />
-                  <span className="shot3d-edge side" />
-                  <span className="shot3d-edge bottom" />
-                  <img src="/platform-home.png" alt="FlowX 内容制作中心 · AI 应用平台首页" loading="lazy" />
-                  <div className="shot3d-sheen" />
-                  <div className="shot3d-rim" />
-                </div>
-                <div className="shot3d-shadow" />
-                <figcaption className="shot3d-cap">
-                  内容制作中心 · AI 应用平台 <span className="ver">V1.5.0</span>
-                </figcaption>
-              </figure>
+            <div className="hero-side reveal">
+              <div className="hero-note"><span>当前方向</span><b>AI 产品经理</b></div>
+              <Placeholder title="作品集封面 / 产品全景" note="建议替换：FlowX 工作台或多模块拼图" ratio="portrait" />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 3. 主案例：游戏营销素材自动化 */}
-      <section className="case" id="case">
-        <div className="container">
-
-          {/* 01 封面：结果先行 */}
-          <div className="case-cover reveal">
-            <div className="case-eyebrow">Main Case</div>
-            <h2 className="case-title">
-              让复杂 AI，<i className="em-serif">默认可用</i>
-            </h2>
-            <p className="case-lede">
-              游戏营销素材自动化生产：将渠道规格与批量流程产品化，把人工逐张制作升级为用户自助批量生成。
-            </p>
-            <div className="case-result">
-              {CASE_RESULT.map((r) => (
-                <div className="case-res" key={r.label}>
-                  <div className="case-res-num">{r.num}<span className="u">{r.unit}</span></div>
-                  <div className="case-res-lab">{r.label}</div>
-                </div>
-              ))}
-            </div>
+          <div className="container hero-metrics reveal">
+            {HERO_METRICS.map((metric) => (
+              <div className="hero-metric" key={metric.label}>
+                <strong>{metric.value}</strong><span>{metric.label}</span>
+              </div>
+            ))}
           </div>
+        </section>
 
-          {/* 02 出发点 */}
-          <div className="case-screen reveal">
-            <CaseHead
-              title="素材产能，构成投放规模的"
-              em="实际上限"
-            />
-            <div className="gap2">
-              <div className="gap2-col">
-                <div className="gap2-tag">投放侧需求</div>
-                <p className="gap2-line">同一场活动，数十个渠道，各自合规的成品。</p>
-              </div>
-              <div className="gap2-vs">
-                <span>产能落差</span>
-              </div>
-              <div className="gap2-col">
-                <div className="gap2-tag">供给侧现状</div>
-                <p className="gap2-line">人工逐张制作，产能受人力线性约束。</p>
-              </div>
-            </div>
-            <p className="gap2-note">
-              节奏收紧时，只能压缩渠道数量或降低交付标准。
-            </p>
-          </div>
-
-          {/* 03 痛点对照 */}
-          <div className="case-screen reveal">
-            <CaseHead
-              title="从人工逐张制作，到"
-              em="用户自助批量生成"
-            />
-            <div className="pain-head">
-              <span />
-              <span className="cmp-a">改造前</span>
-              <span className="cmp-b">改造后</span>
-            </div>
-            <div className="pains">
-              {PAINS.map((p) => (
-                <div className="pain" key={p.n}>
-                  <div className="pain-k">
-                    <span className="pain-n">{p.n}</span>
-                    <span className="pain-t">{p.k}</span>
-                  </div>
-                  <div className="pain-then">{p.then}</div>
-                  <div className="pain-now">{p.now}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 04 通用 AI vs 我们 */}
-          <div className="case-screen reveal">
-            <CaseHead
-              title="通用 AI 工具与生产流程的"
-              em="能力边界"
-              sub="核心差异不在生成质量，而在生成结果能否直接进入业务交付。"
-            />
-            <div className="vs">
-              <div className="vs-row vs-th">
-                <div className="vs-dim" />
-                <div className="vs-a">通用 AI 工具</div>
-                <div className="vs-b">标准化生产流程</div>
-              </div>
-              {VERSUS.map((v) => (
-                <div className={`vs-row ${v.key ? "key" : ""}`} key={v.dim}>
-                  <div className="vs-dim">{v.dim}</div>
-                  <div className="vs-a">{v.a}</div>
-                  <div className="vs-b">{v.b}</div>
-                </div>
-              ))}
-            </div>
-            <p className="vs-note">
-              其中品牌资产为关键约束：LOGO 与奖励图需保持<i className="em-serif">像素级一致</i>。生成式模型对该类元素存在重绘风险，因此固定资产以分层合成方式处理，不纳入生成环节。
-            </p>
-          </div>
-
-          {/* 04 核心判断：双层结构 */}
-          <div className="case-screen reveal">
-            <CaseHead title="智能默认与" em="异常兜底" sub="高阶参数收敛为智能默认项，边缘失败场景保留可恢复路径。" />
-            <div className="dual">
-              <div className="dual-layer">
-                <div className="dual-tag">智能默认</div>
-                <ul className="dual-list">
-                  {LAYER_DEFAULT.map((x) => <li key={x}>{x}</li>)}
-                </ul>
-              </div>
-              <div className="dual-layer alt">
-                <div className="dual-tag">异常兜底</div>
-                <ul className="dual-list">
-                  {LAYER_CONTROL.map((x) => <li key={x}>{x}</li>)}
-                </ul>
-              </div>
-            </div>
-            <blockquote className="case-quote">
-              AI 产品的价值不在于开放更多参数，<b>而在于降低获得正确结果所需的判断成本。</b>
-            </blockquote>
-          </div>
-
-          {/* 05 产品方案：端到端 */}
-          <div className="case-screen reveal">
-            <CaseHead title="端到端" em="生产链路" sub="从任务输入到结果交付的完整流程定义。" />
-            <div className="steps">
-              {FLOW.map((f) => (
-                <div className="step" key={f.n}>
-                  <span className="step-ghost">{f.n}</span>
-                  <div className="step-body">
-                    <h4 className="step-t">{f.t}</h4>
-                    <p className="step-d">{f.d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="ph-grid">
-              {["参数配置与任务输入", "批量生成与渠道预览", "状态追踪与结果交付"].map((p) => (
-                <div className="ph" key={p}>
-                  <div className="ph-name">{p}</div>
-                  <div className="ph-note">结构示意，后续替换为脱敏产品界面</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 06 策略资产化 */}
-          <div className="case-screen reveal">
-            <CaseHead title="投放策略" em="资产化" sub="针对经验型投放策略难以沉淀的问题，构建可按渠道自动匹配的场景数据集。" />
-            <div className="asset-grid">
-              <div className="asset-live">
-                <div className="asset-state on">已落地</div>
-                <div className="asset-num">614<span className="u">条</span></div>
-                <div className="asset-lab">场景数据集，按渠道自动匹配</div>
-                <div className="asset-chips">
-                  {STRATEGY.map((s) => <span className="chip" key={s}>{s}</span>)}
-                </div>
-                <div className="asset-note">覆盖六类投放策略</div>
-              </div>
-              <div className="asset-design">
-                <div className="asset-state off">机制设计</div>
-                <div className="asset-flow">
-                  {["投流数据回流", "数据清洗", "定期生成候选提示词", "人工审核", "入库更新"].map((s) => (
-                    <div className="asset-step" key={s}>{s}</div>
-                  ))}
-                </div>
-                <div className="asset-note">仅完成产品机制设计，未上线</div>
+        <section className="context section-pad" id="about">
+          <div className="container context-grid">
+            <div className="section-label reveal">PROFILE / 角色定位</div>
+            <div className="context-copy reveal">
+              <h2>不是给 AI 套一层界面，<br />而是让它进入<span>真实生产流程。</span></h2>
+              <p>参与网易游戏 AI 应用平台 FlowX 建设，负责游戏营销素材自动化、动态素材、资产管理与 Agent 方向的产品方案。工作覆盖需求洞察、流程梳理、产品设计、项目推进、验收与迭代。</p>
+              <div className="context-tags">
+                <span>业务流程产品化</span><span>AI 能力边界</span><span>质量与兜底机制</span><span>Agent 工作流</span>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* 08 质量成本矩阵 */}
-          <div className="case-screen reveal">
-            <CaseHead
-              title="质量成本"
-              em="平衡策略"
-              sub="根据任务质量要求及模型能力边界设计分层路由策略，避免全量调用高成本模型。"
-            />
-            <div className="matrix">
-              <div className="mx-corner" />
-              <div className="mx-col">低质量风险</div>
-              <div className="mx-col">高质量风险</div>
-              <div className="mx-row">低业务价值 / 可重试</div>
-              <div className="mx-cell">优先低成本模型</div>
-              <div className="mx-cell">中档模型 + 自动校验</div>
-              <div className="mx-row">高业务价值 / 直接投放</div>
-              <div className="mx-cell">中高档模型 + A/B</div>
-              <div className="mx-cell hi">高质量模型 + 兜底流程</div>
-            </div>
-            <div className="mbars">
-              {METRICS.map((m) => (
-                <div className="mbar" key={m.lab}>
-                  <div className="mbar-val">{m.val}<span className="u">{m.unit}</span></div>
-                  <div className="mbar-lab">{m.lab}</div>
-                </div>
-              ))}
-            </div>
-            <div className="mbar-note">按 API 单价与任务量测算</div>
-          </div>
-
-          {/* 08 结果与方法沉淀 */}
-          <div className="case-screen reveal">
-            <CaseHead title="业务结果与" em="方法沉淀" />
-            <div className="outcome">
-              <div className="outcome-biz">
-                <div className="outcome-tag">业务结果</div>
-                <ul>
-                  <li>已落地梦幻西游、永劫无间等 20+ 款游戏。</li>
-                  <li>适配微信私域、手机品牌应用商店等 64 个主流宣发渠道。</li>
-                  <li>单次任务可在 12-15 分钟内最多产出 128 张素材。</li>
-                  <li>业务验收一次通过率 90%，兜底后可用率 95%。</li>
-                </ul>
+        <section className="main-case section-pad" id="main-case">
+          <div className="container">
+            <div className="case-cover reveal">
+              <div className="cover-meta">
+                <span>MAIN CASE · 01</span><span>游戏回流营销素材生产</span>
               </div>
-              <div className="outcome-method">
-                <div className="outcome-tag">方法沉淀</div>
-                {TAKEAWAYS.map((t, i) => (
-                  <div className="takeaway" key={t}>
-                    <span className="tk-n">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="tk-t">{t}</span>
+              <div className="cover-grid">
+                <div>
+                  <h2>高质量不是问题。<br /><em>高质量却无法规模化，</em><br />才是问题。</h2>
+                  <p>将人工经验、通用 AI 与自研产品放进同一条证据轨道，回答“为什么做、为什么是这套方案、为什么它不可替代”。</p>
+                </div>
+                <Placeholder title="主案例产品界面" note="建议替换：渠道批量生成工作台" />
+              </div>
+              <div className="case-scope">
+                <span><i>角色</i>产品方案 / 流程设计 / 验收迭代</span>
+                <span><i>对象</i>游戏运营与美术团队</span>
+                <span><i>周期</i>从单点能力到批量生产系统</span>
+              </div>
+            </div>
+
+            <article className="chapter">
+              <ChapterHead index="01" eyebrow="BUSINESS PAIN / 业务痛点" title="问题不在生成速度，" highlight="而在交付规模。" desc="投放需要的不是一张好看的图，而是数十渠道、多版本、合规格、可验收的一批成品。" />
+              <div className="pain-grid reveal">
+                {PAINS.map((pain) => (
+                  <div className="pain-card" key={pain.no}>
+                    <div className="pain-top"><span>{pain.no}</span><b>{pain.tag}</b></div>
+                    <h4>{pain.title}</h4><p>{pain.text}</p>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4. ABOUT */}
-      <section className="about" id="about">
-        <div className="container">
-          <SectionHead
-            title="网易互娱"
-            em="AI 产品实习生"
-            sub="2026.03 - 2026.08　参与网易游戏 AI 应用平台建设，负责游戏营销素材自动化模块的产品方案。"
-          />
-          <div className="about-grid">
-            <div className="reveal">
-              <p className="about-lede">
-                推动 AIGC 能力<em>从单点工具走向标准化生产流程</em>，已落地 20+ 款游戏项目。
-              </p>
-              <div className="about-desc">
-                <p>
-                  负责游戏营销素材自动化模块的产品方案，将渠道规格与批量流程产品化；并将角色、渠道骨架、字效等素材资产结构化沉淀并跨模块复用，素材生产效率提升约 65%，核心资产复用率达 70%+。
-                </p>
-                <p>
-                  在多模态资源生产方向，梳理端到端生产链路，定义任务拆解、工具调用、状态反馈、异常处理与结果交付规则，将分散操作整合为统一任务入口，并完成从任务输入到结果交付的流程验证。
-                </p>
+              <div className="problem-loop reveal">
+                <div className="loop-core">投放规模扩大</div><i>→</i>
+                <div>渠道与版本增加</div><i>→</i>
+                <div>人工制作拥堵</div><i>→</i>
+                <div>压缩测试空间</div><i>↺</i>
               </div>
-              <div className="about-tags">
-                {["需求分析", "产品原型", "Agent 工作流", "模型选型评估", "质量-成本平衡", "MVP 快速验证", "异步任务状态", "前后端协作"].map((t) => (
-                  <span key={t} className="tag">{t}</span>
+            </article>
+
+            <article className="chapter">
+              <ChapterHead index="02" eyebrow="PAST WORKFLOW / 旧流程" title="质量来自人，" highlight="规模也被人锁住。" desc="过去的流程可以控制质量，却把每一次渠道适配都变成重复劳动。" />
+              <div className="flow-stack reveal">
+                <FlowLane title="旧流程 · 人工串行" tone="old" items={OLD_FLOW} />
+                <FlowLane title="新流程 · 系统并行" tone="new" items={NEW_FLOW} />
+              </div>
+              <div className="time-contrast reveal">
+                <div className="time-before"><span>过去</span><strong>≥20min</strong><p>单张半 AI 制作<br />批量任务需 2–3 人大半天</p></div>
+                <div className="time-arrow">生产方式改变 →</div>
+                <div className="time-after"><span>现在</span><strong>15–20min</strong><p>完成一批素材<br />包含奖励合成与渠道适配</p></div>
+              </div>
+            </article>
+
+            <article className="chapter">
+              <ChapterHead index="03" eyebrow="WHY NOT GENERIC AI / 为什么通用 AI 不够" title="三种方案放在一起，" highlight="价值才看得见。" desc="颜色对应三种生产方式：暖橙代表人工负担，冷蓝代表模型能力，绿色代表可交付系统。" />
+              <div className="compare-stage reveal">
+                {COMPARE.map((item) => (
+                  <div className={`compare-card ${item.tone}`} key={item.tone}>
+                    <div className="compare-band">{item.eyebrow}</div>
+                    <div className="compare-body">
+                      <h4>{item.title}</h4><p>{item.lead}</p>
+                      <ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+                    </div>
+                    <div className="compare-footer">{item.footer}</div>
+                  </div>
                 ))}
               </div>
-            </div>
-            <div className="reveal">
-              <div className="contact-list">
-                <div className="contact-row"><span className="k">姓名</span><span className="v">张喆涵</span></div>
-                <div className="contact-row"><span className="k">身份</span><span className="v">AI 产品经理 / AI 运营</span></div>
-                <div className="contact-row"><span className="k">实习</span><span className="v">网易互娱 · AI 产品实习生</span></div>
-                <div className="contact-row"><span className="k">电话</span><span className="v"><a href="tel:18826079659">188 2607 9659</a></span></div>
-                <div className="contact-row"><span className="k">邮箱</span><span className="v"><a href="mailto:3062282106@qq.com">3062282106@qq.com</a></span></div>
-                <div className="contact-row"><span className="k">坐标</span><span className="v">广东 · 可远程</span></div>
-              </div>
-            </div>
-          </div>
+              <div className="compare-conclusion reveal"><span>产品判断</span><p>真正的壁垒不是接入一个模型，而是把<strong>业务规则、品牌资产、任务状态与失败兜底</strong>一起设计进系统。</p></div>
+            </article>
 
-          <div className="stats-grid reveal">
-            {STATS.map((s) => (
-              <div className="stat-cell" key={s.label}>
-                <div className="stat-num">{s.num}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. PROJECTS */}
-      <section className="projects" id="projects">
-        <div className="container">
-          <SectionHead
-            title="平台内由本人主导产品方案的"
-            em="功能模块"
-          />
-          <div className="proj-grid">
-            {PROJECTS.map((p) => (
-              <article className="proj-card reveal" key={p.name}>
-                <div className="proj-media">
-                  <img src={p.img} alt={p.name} loading="lazy" />
+            <article className="chapter">
+              <ChapterHead index="04" eyebrow="SYSTEM BLUEPRINT / 自研系统" title="把经验沉淀为" highlight="一条可运行的生产线。" desc="产品价值来自系统层：让不同模型、规则与固定资产在同一套生产协议下协作。" />
+              <div className="system-map reveal">
+                <div className="system-inputs">
+                  <span>游戏信息</span><span>投放场景</span><span>渠道规格</span><span>品牌资产</span>
                 </div>
-                <div className="proj-body">
-                  <h3 className="proj-name">{p.name}</h3>
-                  <p className="proj-desc">{p.desc}</p>
-                  <div className="proj-tags">
-                    {p.tags.map((t) => (
-                      <span key={t} className="proj-tag">{t}</span>
-                    ))}
+                <div className="system-arrow">↓ 结构化输入</div>
+                <div className="system-engine">
+                  <div className="engine-title"><b>FLOWX 批量生产引擎</b><span>把不稳定生成封装为稳定任务</span></div>
+                  <div className="engine-layers">
+                    <div><span>策略层</span><b>307 条渠道化场景提示词</b><small>玩法 / 颜值 / 福利 / 情怀 / 紧迫感 / 社交</small></div>
+                    <div><span>生成层</span><b>模型路由 + A/B 双版本</b><small>按质量要求选型，支持单渠道重生</small></div>
+                    <div><span>资产层</span><b>字体 / 奖励 / Logo 分层合成</b><small>固定资产不参与重绘，保证品牌与信息准确</small></div>
+                    <div><span>任务层</span><b>状态可见 + 异常恢复</b><small>失败自矫正、任务续跑、结果打包下载</small></div>
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. STRENGTHS */}
-      <section className="strengths" id="strengths">
-        <div className="container">
-          <SectionHead
-            title="专业能力与"
-            em="落地经验"
-          />
-          <div className="str-grid">
-            {STRENGTHS.map((s, i) => (
-              <div className="str-card reveal" key={s.title}>
-                <div className="str-num">{String(i + 1).padStart(2, "0")}</div>
-                <h3 className="str-title">{s.title}</h3>
-                <p className="str-desc">{s.desc}</p>
+                <div className="system-arrow">↓ 可验收输出</div>
+                <div className="system-outputs"><span>64 渠道成品</span><span>A/B 版本</span><span>可恢复任务</span><span>ZIP 批量交付</span></div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <div className="value-strip reveal">
+                <span>不可替代的价值</span>
+                <p>不是替用户多生成几张图，而是让原本依赖个人经验的工作，变成团队可以反复运行、持续优化的生产系统。</p>
+              </div>
+            </article>
 
-      {/* 5. FOOTER */}
-      <section className="footer" id="contact">
-        <div className="footer-glow" />
-        <div className="footer-inner reveal">
-          <h2 className="footer-big">
-            期待交流<br />
-            <span className="thin">AI 产品方向的机会</span>
-          </h2>
-          <a className="footer-mail" href="mailto:3062282106@qq.com">3062282106@qq.com</a>
-        </div>
-        <div className="footer-bottom reveal">
-          <span>© {new Date().getFullYear()} 张喆涵</span>
-          <div className="footer-links">
-            <a href="tel:18826079659">18826079659</a>
-            <a href="#top">回到顶部</a>
+            <article className="chapter result-chapter">
+              <ChapterHead index="05" eyebrow="RESULT / 结果证据" title="结果不是 Demo，" highlight="而是稳定交付。" desc="数据同时证明产品的业务覆盖、生产效率、质量与成本价值。" />
+              <div className="result-grid reveal">
+                {MAIN_RESULTS.map((result) => (
+                  <div className="result-card" key={result.label}>
+                    <strong>{result.value}<small>{result.unit}</small></strong><span>{result.label}</span>
+                  </div>
+                ))}
+              </div>
+              <Placeholder title="主案例结果拼图" note="建议替换：多游戏、多渠道结果与 A/B 对比" />
+            </article>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="agent section-pad" id="agent">
+          <div className="container">
+            <div className="section-kicker reveal"><span>SUB CASE · 01 / 2 PAGES</span><b>Agent 工作流</b></div>
+
+            <article className="agent-page reveal">
+              <div className="agent-copy">
+                <span className="eyebrow">PAGE 01 · INTERACTION SHIFT</span>
+                <h2>从“学会填参数”，<br />到<span>只需说清目标。</span></h2>
+                <p>即使已有 FlowX 网站，用户过去仍要理解多个模块、填写参数并手动衔接步骤。Agent 把操作知识收进系统，把自然语言需求转成可执行任务。</p>
+              </div>
+              <div className="agent-compare">
+                <div className="agent-route old">
+                  <header><span>过去</span><b>用户编排工具</b></header>
+                  {['找到正确模块','理解并填写参数','上传与引用素材','等待并检查状态','手动进入下一步'].map((x, i) => <div key={x}><i>{i + 1}</i>{x}</div>)}
+                  <footer>高学习成本 · 多步骤 · 易中断</footer>
+                </div>
+                <div className="route-vs">VS</div>
+                <div className="agent-route new">
+                  <header><span>现在</span><b>Agent 编排任务</b></header>
+                  {['用户描述目标','Agent 理解意图','规划并调用工具','持续反馈状态','交付完整结果'].map((x, i) => <div key={x}><i>{i + 1}</i>{x}</div>)}
+                  <footer>低门槛 · 可观察 · 可恢复</footer>
+                </div>
+              </div>
+            </article>
+
+            <article className="agent-page architecture reveal">
+              <div className="agent-copy">
+                <span className="eyebrow">PAGE 02 · AGENT ARCHITECTURE</span>
+                <h2>一个入口背后，<br />是一套<span>可恢复的执行架构。</span></h2>
+                <p>小奈 / 沙包负责对话体验，FlowX Skill 提供稳定工具协议；主脑负责理解、规划、观察与恢复。</p>
+              </div>
+              <div className="agent-map">
+                <div className="agent-entry"><b>用户入口</b><span>小奈 / 沙包</span><small>自然语言需求与过程反馈</small></div>
+                <div className="map-down">↓</div>
+                <div className="brain">
+                  <header><b>AGENT MAIN BRAIN</b><span>理解 → 规划 → 执行 → 观察 → 恢复</span></header>
+                  <div className="brain-grid"><span>意图路由</span><span>视觉理解</span><span>状态机</span><span>任务恢复</span></div>
+                </div>
+                <div className="map-down">↓ TOOL CALLING</div>
+                <div className="skill-layer"><b>FLOWX SKILL / 工具层</b><span>/tools</span><span>/upload</span><span>/tasks</span><span>/results</span></div>
+                <div className="map-down">↓</div>
+                <div className="tool-grid"><span>图片生成</span><span>素材管理</span><span>动态生成</span><span>任务中心</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section className="sub-cases section-pad" id="sub-cases">
+          <div className="container">
+            <div className="section-kicker reveal"><span>SUB CASES · 02–03</span><b>效率能力与资产底座</b></div>
+
+            <article className="split-case reveal">
+              <div className="split-copy">
+                <span className="eyebrow">SUB CASE 02 · 动态生成</span>
+                <h2>把 AE 单张制作，<br />升级为<span>分钟级批量输出。</span></h2>
+                <p>过去套用 AE 模板，一张动态素材也要十几分钟。现在通过模板参数化与批量任务，一次生成多个版本，并一键导出适配不同规格尺寸的 GIF。</p>
+                <div className="mini-compare">
+                  <div className="old"><span>过去</span><b>10+ 分钟 / 张</b><small>手动改模板、逐个导出</small></div>
+                  <div className="new"><span>现在</span><b>分钟级 / 批量</b><small>多规格 GIF 一键导出</small></div>
+                </div>
+                <div className="case-tags"><span>模板参数化</span><span>批量任务</span><span>多规格导出</span></div>
+              </div>
+              <Placeholder title="动态生成工作台" note="建议替换：参数面板 + 多规格结果" ratio="tall" />
+            </article>
+
+            <article className="split-case reverse reveal">
+              <Placeholder title="素材管理界面" note="建议替换：角色、渠道骨架、字效资产库" ratio="tall" />
+              <div className="split-copy">
+                <span className="eyebrow">SUB CASE 03 · 素材管理</span>
+                <h2>素材不是附件，<br />而是<span>AI 生产的底层资产。</span></h2>
+                <p>统一管理角色、渠道骨架、字体效果和品牌资产，让不同生成模块能够调用同一份可信内容，避免重复上传、版本混乱和错误重绘。</p>
+                <div className="reuse-stat"><strong>70%+</strong><span>核心资产复用率</span></div>
+                <div className="asset-route"><span>一次沉淀</span><i>→</i><span>跨模块调用</span><i>→</i><span>持续复用</span></div>
+                <div className="case-tags"><span>统一资产库</span><span>跨模块调用</span><span>权限与版本</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section className="projects section-pad" id="projects">
+          <div className="container">
+            <div className="section-kicker reveal"><span>SELECTED PROJECTS</span><b>其余能力，以轻量卡片继续展开</b></div>
+            <div className="project-grid">
+              {PROJECTS.map((project) => (
+                <article className="project-card reveal" key={project.no}>
+                  <Placeholder title={project.title} note="项目截图占位" />
+                  <div className="project-body">
+                    <span className="project-no">PROJECT / {project.no}</span>
+                    <h3>{project.title}</h3><p>{project.desc}</p>
+                    <div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="strengths section-pad">
+          <div className="container">
+            <div className="section-kicker reveal"><span>AI PM VALUE</span><b>我能为团队带来的价值</b></div>
+            <div className="strength-grid">
+              {STRENGTHS.map(([no, title, desc]) => (
+                <div className="strength-card reveal" key={no}><span>{no}</span><h3>{title}</h3><p>{desc}</p></div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <footer className="footer section-pad">
+          <div className="footer-glow" />
+          <div className="container footer-inner reveal">
+            <span className="eyebrow">LET'S BUILD SOMETHING USEFUL</span>
+            <h2>让 AI 不只会生成，<br /><em>更能够稳定工作。</em></h2>
+            <a href="mailto:3062282106@qq.com">3062282106@qq.com ↗</a>
+            <div className="footer-bottom"><span>张喆涵 · AI 产品经理作品集</span><span>FLOWX / 2026</span></div>
+          </div>
+        </footer>
+      </main>
     </div>
   );
 }
