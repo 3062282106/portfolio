@@ -1,0 +1,107 @@
+/* 动态生成：化繁为简生产方式 */
+
+.simplify {
+  padding: 0 0 48px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.simplify-head span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--green);
+  font-size: 13px;
+  letter-spacing: .12em;
+}
+.simplify-head h3 {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 520;
+  letter-spacing: -.03em;
+}
+.simplify-head p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.simplify-case {
+  margin: 28px 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.simplify-lanes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+.lane {
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #080c0a;
+}
+.lane.flowx {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+.lane b {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.lane.flowx b { color: var(--green); }
+.lane p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.simplify-bridge {
+  margin: 20px 0 0;
+  padding: 16px 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #080c0a;
+}
+.simplify-bridge strong { color: var(--green); font-weight: 560; }
+
+.simplify-impact {
+  margin-top: 16px;
+}
+.simplify-impact article {
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #080c0a;
+}
+.simplify-impact span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+.simplify-impact p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.simplify-impact i {
+  margin: 0 8px;
+  color: var(--green);
+  font-style: normal;
+}
+.simplify-impact strong {
+  color: var(--green);
+  font-size: 28px;
+  font-weight: 560;
+  letter-spacing: -.03em;
+}
+
+@media (max-width: 900px) {
+  .simplify-lanes { grid-template-columns: 1fr; }
+}
