@@ -57,7 +57,7 @@ export const PROJECTS = [
   { no: "04", title: "智能扩图与局部重绘", desc: "扩图与重绘，像素级可控", tags: ["Inpaint", "Mask", "任务恢复"], image: "/projects/智能扩图.png" },
   { no: "05", title: "角色三视图生成", desc: "一键批量生成，三视图一次出齐", tags: ["一致性", "批量生成", "失败兜底"], image: "/projects/角色三视图.png" },
   { no: "06", title: "Logo 创作模块", desc: "内置六大风格模板，一次完成品牌延展", tags: ["配套延展", "多尺寸", "多模型"], image: "/projects/logo.png" },
-  { no: "07", title: "模板替换", desc: "一套模板，出一整批成品", tags: ["智能匹配", "批量成品", "规格输出"], image: "/projects/模板替换.png" },
+  { no: "07", title: "H5智能制作", desc: "上传 KV 参考图，生成组件库并自动切图打包", tags: ["KV 参考图", "组件生成", "生产可用"], image: "/projects/H5智能制作.png" },
   { no: "08", title: "智能定妆照", desc: "内置定妆照生成、定妆照三视图、人像换衣等多张板块", tags: ["质感保留", "批量处理", "肤色矫正"], image: "/projects/定妆照.png" },
 ];
 
@@ -148,4 +148,3 @@ export const SCENE_ROLES = [
     text: "分镜到成片一条链路批量完成，内容制作环节全链路打通",
   },
 ];
-

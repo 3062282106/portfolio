@@ -11,7 +11,7 @@ export default function MoreWork() {
     <>
       <section className="sub-cases section-pad" id="sub-cases">
         <div className="container">
-          <div className="section-kicker sub-kicker reveal"><span>SUB CASES · 02–03</span><b>效率能力与资产底座</b></div>
+          <div className="section-kicker sub-kicker reveal"><span>SUB CASES · 02–04</span><b>效率能力与资产底座</b></div>
 
           <article className="split-case reveal">
             <div className="split-copy">
@@ -50,6 +50,39 @@ export default function MoreWork() {
               <div className="reuse-stat"><strong>70%+</strong><span>核心资产复用率</span></div>
               <div className="asset-route"><span>一次沉淀</span><i>→</i><span>跨模块调用</span><i>→</i><span>持续复用</span></div>
               <div className="case-tags"><span>统一资产库</span><span>跨模块调用</span><span>权限与版本</span></div>
+            </div>
+          </article>
+
+          <article className="template-case">
+            <div className="template-case-head reveal">
+              <div>
+                <span className="eyebrow">SUB CASE 04 · 模板替换</span>
+                <h2>解析 PSD 图层<br /><span>前端还原，批量替换</span></h2>
+              </div>
+              <div className="template-case-summary">
+                <p>在前端还原可编辑版式；导入 Excel 文案和图片后，批量替换、预览、导出。</p>
+                <div className="case-tags"><span>PSD 解析</span><span>前端还原</span><span>批量替换</span></div>
+              </div>
+            </div>
+            <div className="template-case-shots">
+              <figure className="template-case-shot reveal">
+                <a href="/projects/模板替换-批量结果.webp" target="_blank" rel="noopener noreferrer" aria-label="查看模板替换批量结果大图">
+                  <img src="/projects/模板替换-批量结果.webp" alt="模板替换界面，批量生成 20 套素材并预览不同成品" loading="lazy" decoding="async" />
+                </a>
+                <figcaption><span>01</span> 批量结果与成品预览 <small>查看大图 ↗</small></figcaption>
+              </figure>
+              <figure className="template-case-shot reveal">
+                <a href="/projects/模板替换-配置流程.webp" target="_blank" rel="noopener noreferrer" aria-label="查看模板替换配置流程大图">
+                  <img src="/projects/模板替换-配置流程.webp" alt="模板替换界面，配置 Excel 文案、字体与替换位" loading="lazy" decoding="async" />
+                </a>
+                <figcaption><span>02</span> 文案、字体与替换位配置 <small>查看大图 ↗</small></figcaption>
+              </figure>
+              <figure className="template-case-shot reveal">
+                <a href="/projects/模板替换-成品展示.webp" target="_blank" rel="noopener noreferrer" aria-label="查看模板替换成品展示大图">
+                  <img src="/projects/模板替换-成品展示.webp" alt="同一模板批量替换生成的四张不同人物与文案的卡片成品" loading="lazy" decoding="async" />
+                </a>
+                <figcaption><span>03</span> 同一模板的批量成品 <small>查看大图 ↗</small></figcaption>
+              </figure>
             </div>
           </article>
         </div>
