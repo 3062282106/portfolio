@@ -55,11 +55,11 @@ export default function AgentSection() {
 
         <div className="agent-shot reveal">
           <div className="agent-shot-home">
-            <Placeholder title="FlowX AI 应用平台 · Agent 首页" src="/projects/agent-chat-home.png" />
+            <Placeholder title="FlowX AI 应用平台 · Agent 首页" src="/projects/agent-chat-home.webp" />
           </div>
           <div className="agent-shot-grid">
-            <Placeholder title="Agent 小奈 · 模板批量替换" src="/projects/agent-chat-assets.png" />
-            <Placeholder title="Agent 小奈 · 选手服装生成" src="/projects/agent-chat-stylist.png" />
+            <Placeholder title="Agent 小奈 · 模板批量替换" src="/projects/agent-chat-assets.webp" />
+            <Placeholder title="Agent 小奈 · 选手服装生成" src="/projects/agent-chat-stylist.webp" />
           </div>
         </div>
       </div>
