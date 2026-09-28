@@ -66,22 +66,16 @@ export default function MoreWork() {
             </div>
             <div className="template-case-shots">
               <figure className="template-case-shot reveal">
-                <a href="/projects/模板替换-批量结果.webp" target="_blank" rel="noopener noreferrer" aria-label="查看模板替换批量结果大图">
-                  <img src="/projects/模板替换-批量结果.webp" alt="模板替换界面，批量生成 20 套素材并预览不同成品" loading="lazy" decoding="async" />
-                </a>
-                <figcaption><span>01</span> 批量结果与成品预览 <small>查看大图 ↗</small></figcaption>
+                <img src="/projects/模板替换-批量结果.webp" alt="模板替换界面，批量生成 20 套素材并预览不同成品" loading="lazy" decoding="async" />
+                <figcaption><span>01</span> 批量结果与成品预览</figcaption>
               </figure>
               <figure className="template-case-shot reveal">
-                <a href="/projects/模板替换-配置流程.webp" target="_blank" rel="noopener noreferrer" aria-label="查看模板替换配置流程大图">
-                  <img src="/projects/模板替换-配置流程.webp" alt="模板替换界面，配置 Excel 文案、字体与替换位" loading="lazy" decoding="async" />
-                </a>
-                <figcaption><span>02</span> 文案、字体与替换位配置 <small>查看大图 ↗</small></figcaption>
+                <img src="/projects/模板替换-配置流程.webp" alt="模板替换界面，配置 Excel 文案、字体与替换位" loading="lazy" decoding="async" />
+                <figcaption><span>02</span> 文案、字体与替换位配置</figcaption>
               </figure>
               <figure className="template-case-shot reveal">
-                <a href="/projects/模板替换-成品展示.webp" target="_blank" rel="noopener noreferrer" aria-label="查看模板替换成品展示大图">
-                  <img src="/projects/模板替换-成品展示.webp" alt="同一模板批量替换生成的四张不同人物与文案的卡片成品" loading="lazy" decoding="async" />
-                </a>
-                <figcaption><span>03</span> 同一模板的批量成品 <small>查看大图 ↗</small></figcaption>
+                <img src="/projects/模板替换-成品展示.webp" alt="同一模板批量替换生成的四张不同人物与文案的卡片成品" loading="lazy" decoding="async" />
+                <figcaption><span>03</span> 同一模板的批量成品</figcaption>
               </figure>
             </div>
           </article>
@@ -123,7 +117,7 @@ export default function MoreWork() {
         <div className="footer-glow" />
         <div className="container footer-inner reveal">
           <h2>让 AI 效率<br /><em>融入生产系统</em></h2>
-          <a href={RESUME_URL} download>下载简历 ↗</a>
+          <a href={RESUME_URL} download>下载简历</a>
           <div className="footer-bottom"><span>张喆涵项目作品集</span><span>FLOWX / 2026</span></div>
         </div>
       </footer>

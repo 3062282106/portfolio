@@ -54,7 +54,10 @@ export default function AgentSection() {
         </article>
 
         <div className="agent-shot reveal">
-          <Placeholder title="Agent 小奈" src="/projects/agent.png" />
+          <div className="agent-shot-grid">
+            <Placeholder title="Agent 小奈 · 模板批量替换" src="/projects/agent-chat-assets.png" />
+            <Placeholder title="Agent 小奈 · 选手服装生成" src="/projects/agent-chat-stylist.png" />
+          </div>
         </div>
       </div>
     </section>

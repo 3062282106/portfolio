@@ -328,13 +328,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .template-case-summary p { max-width: 400px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
 .template-case-summary .case-tags { margin-top: 24px; }
 .template-case-shots { display: grid; gap: 32px; }
-.template-case-shot { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
-.template-case-shot a { display: block; }
-.template-case-shot a:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; }
+.template-case-shot { margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--panel); }
 .template-case-shot img { display: block; width: 100%; height: auto; }
 .template-case-shot figcaption { display: flex; align-items: center; gap: 12px; padding: 16px 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .template-case-shot figcaption span { color: var(--green); font-size: 11px; letter-spacing: .12em; }
-.template-case-shot figcaption small { margin-left: auto; color: var(--green); font-size: 11px; white-space: nowrap; }
 
 /* projects */
 .projects { background: var(--bg); }

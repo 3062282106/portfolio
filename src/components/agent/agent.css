@@ -225,7 +225,13 @@
 }
 
 .agent-shot { margin-top: 64px; }
+.agent-shot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .agent-shot .placeholder.filled { min-height: 0; border-radius: 16px; }
+.agent-shot .placeholder.filled img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 700px) {
+  .agent-shot-grid { grid-template-columns: 1fr; gap: 16px; }
+}
 
 @media (max-width: 900px) {
   .agent-rail { grid-template-columns: 1fr; padding-top: 8px; gap: 18px; }

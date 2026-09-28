@@ -18,7 +18,7 @@ export default function Nav() {
       <div className="nav-links">
         {NAV.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
       </div>
-      <a className="nav-contact" href={RESUME_URL} download>下载简历 ↗</a>
+      <a className="nav-contact" href={RESUME_URL} download>下载简历</a>
     </nav>
   );
 }
