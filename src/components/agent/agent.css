@@ -225,6 +225,7 @@
 }
 
 .agent-shot { margin-top: 64px; }
+.agent-shot-home { margin-bottom: 20px; }
 .agent-shot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .agent-shot .placeholder.filled { min-height: 0; border-radius: 16px; }
 .agent-shot .placeholder.filled img { display: block; width: 100%; height: auto; }
