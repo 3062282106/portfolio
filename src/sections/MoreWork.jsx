@@ -2,6 +2,15 @@ import Placeholder from "../components/Placeholder.jsx";
 import { PROJECTS, RESUME_URL, STRENGTHS } from "../content.js";
 import SceneFuture from "./SceneFuture.jsx";
 
+const CAPABILITY_IMAGE = "/projects/flowx/platform-capability-overview.png";
+const CAPABILITY_GROUPS = [
+  { label: "素材批处理 · AI 管线", crop: [0, 0, 430, 416], alt: "人像切图与 Logo 延展" },
+  { label: "动态营销素材 · AI 管线", crop: [466, 0, 427, 416], alt: "动图制作与 GIF 生成" },
+  { label: "H5 长图类 · AI 管线", crop: [929, 0, 427, 416], alt: "H5 长图与蛋仔自动赛" },
+  { label: "渠道平台素材 · AI 管线", crop: [1392, 0, 428, 416], alt: "游戏图标生成与渠道商店图" },
+  { label: "通用能力 · AI 管线", crop: [0, 452, 1820, 389], alt: "图像处理、Logo 创作、三视图、视频、字体与 3D 工具", wide: true },
+];
+
 export default function MoreWork() {
   return (
     <>
@@ -58,10 +67,16 @@ export default function MoreWork() {
           <div className="section-kicker project-kicker reveal"><span>PRODUCT MODULES</span><b>项目集 · 平台产品模块</b></div>
         </div>
         <figure className="capability-overview reveal">
-          <a href="/projects/flowx/platform-capability-overview.png" target="_blank" rel="noreferrer" aria-label="查看 FlowX 平台能力全景原图（在新标签页打开）">
-            <img src="/projects/flowx/platform-capability-overview.png" alt="FlowX 平台能力全景：人像切图、Logo 延展、动图与 GIF 制作、H5、渠道素材，以及图像、视频与 3D 工具" width="1820" height="841" loading="lazy" decoding="async" />
-          </a>
-          <figcaption><span>平台能力全景</span><a href="/projects/flowx/platform-capability-overview.png" target="_blank" rel="noreferrer">查看原图</a></figcaption>
+          <div className="capability-groups">
+            {CAPABILITY_GROUPS.map(({ label, crop: [x, y, width, height], alt, wide }) => (
+              <div className={`capability-group${wide ? " capability-group-wide" : ""}`} key={label}>
+                <h3 className="capability-label">{label}</h3>
+                <div className="capability-crop" style={{ aspectRatio: `${width} / ${height}` }}>
+                  <img src={CAPABILITY_IMAGE} alt={alt} width="1820" height="841" loading="lazy" decoding="async" style={{ width: `${1820 / width * 100}%`, left: `${-x / width * 100}%`, top: `${-y / height * 100}%` }} />
+                </div>
+              </div>
+            ))}
+          </div>
         </figure>
         <div className="container">
           <div className="project-grid">
