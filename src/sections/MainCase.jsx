@@ -1,27 +1,16 @@
 import ChapterHead from "../components/ChapterHead.jsx";
-import CompareMatrix from "../components/CompareMatrix.jsx";
 import FlowLane from "../components/FlowLane.jsx";
 import Placeholder from "../components/Placeholder.jsx";
-import {
-  AI_COMPARE,
-  CASE_RESULT,
-  HUMAN_COMPARE,
-  MAIN_RESULTS,
-  NEW_FLOW,
-  OLD_FLOW,
-  PAINS,
-} from "../content.js";
+import { CASE_RESULT, MARKETING_DECISIONS, NEW_FLOW, OLD_FLOW, PAINS } from "../content.js";
 
-/**
- * 旗舰项目 — 回流营销素材生产
- */
 export default function MainCase() {
   return (
     <section className="main-case section-pad" id="main-case">
       <div className="container">
         <div className="case-cover reveal">
-          <span className="case-eyebrow">旗舰项目｜游戏回流营销素材生产</span>
-          <h2 className="case-title">分钟级产出效率，<em>生成即投放</em></h2>
+          <span className="case-eyebrow">CASE 01 / 游戏营销素材自动化</span>
+          <h2 className="case-title">把多渠道制作<br /><em>做成自助批量生产</em></h2>
+          <p className="case-intro">面向运营与设计团队，解决通用 AI 难适配内部素材、固定规格与品牌规范的问题。把渠道适配、生成兜底和批量交付纳入同一条任务路径。</p>
           <div className="case-result">
             {CASE_RESULT.map((item) => (
               <div className="case-res" key={item.label}>
@@ -30,10 +19,11 @@ export default function MainCase() {
               </div>
             ))}
           </div>
+          <p className="data-note">营销自动化模块项目口径 · 已落地梦幻西游等 20+ 款游戏 · 与下方平台 Agent 质量评测分别统计</p>
         </div>
 
         <article className="chapter">
-          <ChapterHead eyebrow="业务痛点" title="耗尽工时，" highlight="换不来质量" />
+          <ChapterHead eyebrow="需求分析" title="三个阻塞点，" highlight="决定产品切入点" />
           <div className="pain-grid reveal">
             {PAINS.map((pain) => (
               <div className="pain-card" key={pain.no}>
@@ -45,57 +35,58 @@ export default function MainCase() {
         </article>
 
         <article className="chapter">
-          <ChapterHead eyebrow="流程重构" title="从经验交付，" highlight="到规则驱动" />
+          <ChapterHead eyebrow="产品决策" title="让用户表达业务，" highlight="让系统处理复杂度" />
+          <div className="decision-list">
+            {MARKETING_DECISIONS.map((item) => (
+              <article className="decision-row reveal" key={item.no}>
+                <div className="decision-index"><span>{item.no}</span><small>{item.label}</small></div>
+                <div className="decision-body">
+                  <h4>{item.title}</h4>
+                  <p className="decision-problem">{item.problem}</p>
+                  <p>{item.decision}</p>
+                  <p className="decision-outcome">{item.outcome}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </article>
+
+        <article className="chapter">
+          <ChapterHead eyebrow="流程设计" title="运营发起任务，" highlight="系统承接生产" />
           <div className="flow-stack reveal">
-            <FlowLane title="过去 · 依赖人" tone="old" items={OLD_FLOW} />
-            <FlowLane title="现在 · 系统承接" tone="new" items={NEW_FLOW} />
+            <FlowLane title="原流程 · 人工逐项衔接" tone="old" items={OLD_FLOW} />
+            <FlowLane title="产品化流程 · 自助批量任务" tone="new" items={NEW_FLOW} />
           </div>
-        </article>
-
-        <article className="chapter">
-          <ChapterHead eyebrow="价值对比" title="同样是 AI，" highlight="差在交付" />
-          <div className="compare-stack">
-            <CompareMatrix title="解决人工瓶颈" left="人工流程" right="FlowX" tone="human" rows={HUMAN_COMPARE} conclusion="人力扩产 → 系统扩产" />
-            <CompareMatrix title="跨过通用 AI 的最后一公里" left="通用 AI" right="FlowX" tone="ai" rows={AI_COMPARE} conclusion="生成图片 → 交付成品" />
-          </div>
-        </article>
-
-        <article className="chapter">
-          <ChapterHead eyebrow="系统蓝图" title="企业规则，" highlight="就是产品壁垒" />
-          <div className="system-map reveal">
-            <div className="system-inputs">
-              <span>业务规则</span><span>内容策略</span><span>渠道规格</span><span>品牌资产</span>
-            </div>
+          <div className="system-map reveal marketing-system">
+            <div className="system-inputs"><span>活动目标</span><span>渠道资源位</span><span>品牌与角色资产</span><span>版式与内容策略</span></div>
             <div className="system-engine">
-              <div className="engine-title"><b>FLOWX 生产引擎</b><span>把模型能力封装为稳定交付</span></div>
+              <div className="engine-title"><b>FLOWX 营销生产模块</b><span>将业务约束前置到生成与交付流程</span></div>
               <div className="engine-layers">
-                <div><span>策略</span><b>614 条场景策略</b><small>规则化选题与提示词</small></div>
-                <div><span>生成</span><b>成本平衡策略</b><small>质量匹配与版本生成</small></div>
-                <div><span>体验</span><b>收敛智能参数</b><small>解决「调参难、易失败」痛点</small></div>
-                <div><span>任务</span><b>状态与恢复</b><small>失败兜底、续跑、交付</small></div>
+                <div><span>策略</span><b>614 条场景数据</b><small>六类投放策略，按渠道匹配</small></div>
+                <div><span>生成</span><b>分层路由 + 双版生成</b><small>平衡模型调用成本与可用率</small></div>
+                <div><span>体验</span><b>智能默认与状态反馈</b><small>降低调参成本，解释任务进度</small></div>
+                <div><span>迭代</span><b>数据回流与审核入库</b><small>清洗投流数据，定期更新策略</small></div>
               </div>
             </div>
-            <div className="system-outputs"><span>可投放成品</span><span>64 种渠道规格</span><span>分层路由策略</span><span>可追踪任务</span></div>
-          </div>
-          <div className="value-strip reveal">
-            <span>差异化价值</span>
-            <p>可按企业资产、渠道与业务规则配置，复用到各个方向</p>
+            <div className="system-outputs"><span>多规格成品</span><span>可编辑底图</span><span>批量任务结果</span><span>可复用策略与资产</span></div>
           </div>
         </article>
 
         <article className="chapter result-chapter">
-          <ChapterHead eyebrow="结果" title="从一次生成，" highlight="到规模化生产" />
-          <div className="result-grid reveal">
-            {MAIN_RESULTS.map((result) => (
-              <div className="result-card" key={result.label}>
-                <strong>{result.value}<small>{result.unit}</small></strong><span>{result.label}</span>
-              </div>
-            ))}
+          <ChapterHead eyebrow="业务验证" title="同一活动，" highlight="适配多个资源位" desc="平台真实案例：梦幻西游手游回流活动。同一批产出 14 张素材，覆盖 9 种已上架资源位；下方展示其中 3 张成品。" />
+          <div className="delivery-gallery reveal">
+            <figure className="delivery-wide"><img src="/projects/flowx/marketing-wide.png" alt="梦幻西游回流活动插屏广告成品，1110×477" loading="lazy" decoding="async" /><figcaption>插屏广告 <span>1110 × 477</span></figcaption></figure>
+            <figure className="delivery-portrait"><img src="/projects/flowx/marketing-popup.png" alt="同批回流活动大神启动弹窗成品，580×870" loading="lazy" decoding="async" /><figcaption>启动弹窗 <span>580 × 870</span></figcaption></figure>
+            <figure className="delivery-landscape"><img src="/projects/flowx/marketing-feed.png" alt="同批回流活动内容流单图成品，690×188" loading="lazy" decoding="async" /><figcaption>内容流单图 <span>690 × 188</span></figcaption></figure>
           </div>
-          <div className="case-shots">
-            <Placeholder title="游戏回流营销素材生产" src="/projects/游戏回流.png" />
-            <Placeholder title="游戏回流生成预览" src="/projects/游戏回流2.png" />
-          </div>
+          <p className="data-note">平台案例成果 · 版式、安全区与槽位由渠道目录约束，角色身份单独引用参考素材</p>
+          <details className="evidence-details reveal">
+            <summary>查看营销模块界面与生成预览 <span aria-hidden="true">＋</span></summary>
+            <div className="case-shots">
+              <Placeholder title="游戏回流营销素材模块的业务配置界面" src="/projects/游戏回流.png" />
+              <Placeholder title="游戏回流营销素材模块的生成结果预览" src="/projects/游戏回流2.png" />
+            </div>
+          </details>
         </article>
       </div>
     </section>

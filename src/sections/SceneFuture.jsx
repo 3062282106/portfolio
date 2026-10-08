@@ -7,10 +7,11 @@ const LOOP_BOT = ["建设能力", "用起来", "收集反馈", "打磨迭代"];
 /**
  * 场景与未来 — 从做功能到做闭环，以及谁在用
  */
-export default function SceneFuture() {
+export default function SceneFuture({ embedded = false }) {
+  const Wrapper = embedded ? "div" : "section";
   return (
-    <section className="scene section-pad" id="scene">
-      <div className="container">
+    <Wrapper className={embedded ? "scene about-scene" : "scene section-pad"} id="scene">
+      <div className={embedded ? "about-scene-content" : "container"}>
         <header className="scene-head reveal">
           <span className="scene-kicker">SCENE & FUTURE · 谁在用 · 会长成什么</span>
           <h2>从「做功能」到「做闭环」</h2>
@@ -42,6 +43,6 @@ export default function SceneFuture() {
           ))}
         </div>
       </div>
-    </section>
+    </Wrapper>
   );
 }

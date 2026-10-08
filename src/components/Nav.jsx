@@ -14,7 +14,7 @@ export default function Nav() {
   }, []);
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-      <a className="brand" href="#top"><i /> 张喆涵 · 项目作品集</a>
+      <a className="brand" href="#top"><i /> 张喆涵作品集</a>
       <div className="nav-links">
         {NAV.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
       </div>

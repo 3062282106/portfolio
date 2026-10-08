@@ -1,57 +1,36 @@
-import RepeatWork from "./repeat/RepeatWork.jsx";
-import { GUARD_ROUTES, GUARD_STEPS } from "../content.js";
+import { EVAL_SUITE, ITERATIONS, QUALITY_METRICS } from "../content.js";
 import "./guardrails.css";
 
-/**
- * 护栏与成本 — 上线门禁与调用策略，排版对齐双栏板块
- */
 export default function Guardrails() {
   return (
     <section className="guard section-pad" id="method">
       <div className="container">
         <header className="guard-head reveal">
-          <span className="guard-kicker">METHOD · 护栏与成本</span>
-          <h2>从「能生成」到「敢上线」</h2>
-          <p>先判断，再决策，拒绝无效AI渗透</p>
+          <span className="guard-kicker">EVALUATION / 评测与产品迭代</span>
+          <h2>用验收口径与失败样本<br />确定下一轮优先级</h2>
+          <p>分别衡量第一版能否交付、重做能否救回、最终是否需要人工收尾，让生成质量与运行稳定性都能被看见。</p>
         </header>
 
-        <article className="guard-band reveal">
-          <aside className="guard-side">
-            <span>01 / GATE</span>
-            <h3>上线门禁</h3>
-            <p>用验收卡住上线，人力留给真实、高频、可复用的问题</p>
-          </aside>
-          <div className="guard-main">
-            <ol className="guard-flow">
-              {GUARD_STEPS.map((step) => (
-                <li key={step.no}>
-                  <b>{step.title}</b>
-                  <span>{step.text}</span>
-                </li>
-              ))}
-            </ol>
-            <p className="guard-note">稳不住、追不回、对不上的能力，宁可延后</p>
+        <article className="eval-suite reveal">
+          <div className="eval-suite-heading"><h3>我的评测建设</h3><p><strong>53</strong> 个测试文件 <span>/</span> <strong>544</strong> 个用例</p></div>
+          <div className="eval-matrices">
+            {EVAL_SUITE.map((item) => <div key={item.title}><strong>{item.count}<small>项</small></strong><h4>{item.title}</h4><p>{item.text}</p></div>)}
           </div>
         </article>
 
-        <article className="guard-band reveal">
-          <aside className="guard-side">
-            <span>02 / CALL</span>
-            <h3>怎么调用</h3>
-            <p>先判断任务属性，再决定用工具、走算法还是调模型</p>
-          </aside>
-          <div className="guard-cards">
-            {GUARD_ROUTES.map((route) => (
-              <article className="guard-card" key={route.tag}>
-                <span>{route.tag}</span>
-                <h3>{route.title}</h3>
-                <p>{route.text}</p>
-              </article>
-            ))}
+        <article className="quality-evidence reveal">
+          <div className="section-kicker"><span>PLATFORM VALIDATION</span><b>平台质量账本 · 2026.09.22 — 09.30</b></div>
+          <div className="quality-metrics">
+            {QUALITY_METRICS.map((item) => <div key={item.label}><strong>{item.value}</strong><h3>{item.label}</h3><span>{item.sample}</span></div>)}
           </div>
         </article>
 
-        <RepeatWork />
+        <article className="iteration-review reveal">
+          <header><span className="eyebrow">失败归因 → 迭代优先级</span><h3>11 轮需要人工收尾，分别解决</h3></header>
+          <div className="iteration-list">
+            {ITERATIONS.map((item) => <div className="iteration-row" key={item.title}><span className="iteration-priority">{item.no}</span><div><h4>{item.title} <small>{item.count}</small></h4><p>{item.decision}</p></div></div>)}
+          </div>
+        </article>
       </div>
     </section>
   );

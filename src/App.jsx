@@ -5,6 +5,7 @@ import Guardrails from "./sections/Guardrails.jsx";
 import HeroSection from "./sections/HeroSection.jsx";
 import MainCase from "./sections/MainCase.jsx";
 import MoreWork from "./sections/MoreWork.jsx";
+import "./portfolio.css";
 
 /**
  * 作品集根组件 — 组装各区块
@@ -17,8 +18,8 @@ export default function App() {
       <main>
         <HeroSection />
         <MainCase />
-        <Guardrails />
         <AgentSection />
+        <Guardrails />
         <MoreWork />
       </main>
     </div>

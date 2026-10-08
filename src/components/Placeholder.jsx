@@ -6,7 +6,7 @@ export default function Placeholder({ title, note = "待替换真实产品截图
   if (src) {
     return (
       <figure className={`placeholder filled ${ratio}`}>
-        <img src={src} alt={title} />
+        <img src={src} alt={title} loading="lazy" decoding="async" />
       </figure>
     );
   }

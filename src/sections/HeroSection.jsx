@@ -1,4 +1,5 @@
 import HeroCanvas from "../components/HeroCanvas.jsx";
+import { PLATFORM_METRICS } from "../content.js";
 
 /**
  * 首屏与项目背景
@@ -21,28 +22,29 @@ export default function HeroSection() {
         <div className="hero-inner">
           <h1 className="hero-title">
             <span className="line serif-italic scribble">
-              打通 AI 到
+              面向业务交付
               <svg className="ellipse" viewBox="0 0 320 130" aria-hidden="true" preserveAspectRatio="none">
                 <ellipse cx="160" cy="65" rx="150" ry="47" />
               </svg>
               <span className="scribble-sparks">✦<span className="s2">✦</span></span>
             </span>
-            <span className="line bold">业务的最后一公里</span>
+            <span className="line bold">设计 AI 产品</span>
           </h1>
-          <a className="hero-cta" href="#main-case">查看案例</a>
+          <p className="hero-summary">参与 FlowX AI 应用平台建设<br />关注业务流程、Agent 编排与可验证的交付质量</p>
+          <div className="hero-actions">
+            <a className="hero-cta" href="#main-case">查看产品案例</a>
+          </div>
+          <a className="hero-scroll" href="#background">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
         </div>
       </section>
 
       <section className="bg-sec" id="background">
         <div className="container bg-grid">
           <div className="bg-copy reveal">
-            <h2 className="bg-title">从定制走向规模化供给</h2>
+            <span className="eyebrow">PROJECT BACKGROUND</span>
+            <h2 className="bg-title">FlowX<br /><span>面向业务的 AI 应用平台</span></h2>
             <div className="bg-body">
-              <p>参与网易游戏 AI 应用平台建设，负责游戏营销素材自动化</p>
-            </div>
-            <div className="platform-metrics">
-              <div><strong>30,000+</strong><span>平台累计 AI 调用</span></div>
-              <div><strong>80,000+</strong><span>平台累计素材产出</span></div>
+              <p>为运营、设计与赛事团队，把分散的生成工具、素材规范与批量任务，组织成可直接调用的生产管线。</p>
             </div>
           </div>
           <div className="bg-shot reveal">
@@ -50,9 +52,15 @@ export default function HeroSection() {
               <div className="shot3d-glow" />
               <div className="shot3d-frame"><img src="/platform-home.png" alt="FlowX 内容制作中心首页" /></div>
               <div className="shot3d-shadow" />
-              <figcaption>内容制作中心 · AI 应用平台 <span>V1.5.0</span></figcaption>
+              <figcaption>FlowX 内容制作中心 · 业务卡片承载生产能力</figcaption>
             </figure>
           </div>
+        </div>
+        <div className="container platform-overview reveal">
+          <div className="platform-metrics">
+            {PLATFORM_METRICS.map((metric) => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
+          </div>
+          <p className="data-note">平台整体规模 · 截至 2026.09</p>
         </div>
       </section>
     </>

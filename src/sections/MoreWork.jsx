@@ -1,82 +1,53 @@
-import SimplifyProd from "./dynamic/SimplifyProd.jsx";
 import Placeholder from "../components/Placeholder.jsx";
-import { DYNAMIC_GIF_COLS, PROJECTS, RESUME_URL, STRENGTHS } from "../content.js";
+import { PROJECTS, RESUME_URL, STRENGTHS } from "../content.js";
 import SceneFuture from "./SceneFuture.jsx";
 
-/**
- * 副案例、项目集、关于我与页脚
- */
 export default function MoreWork() {
   return (
     <>
       <section className="sub-cases section-pad" id="sub-cases">
         <div className="container">
-          <div className="section-kicker sub-kicker reveal"><span>SUB CASES · 02–04</span><b>效率能力与资产底座</b></div>
+          <div className="section-kicker sub-kicker reveal"><span>BUSINESS CASES</span><b>相同的产品思路，落到不同生产场景</b></div>
 
           <article className="split-case reveal">
             <div className="split-copy">
-              <span className="eyebrow">SUB CASE 02 · 动态生成</span>
-              <h2>动态素材<br /><span>分钟级批量输出</span></h2>
-              <p>AE 逐张套版十几分钟；模板参数化后，分钟级批量导出多规格 GIF。</p>
+              <span className="eyebrow">03 / 动态内容供给平台化</span>
+              <h2>把专业动效制作<br /><span>封装为自助生产能力</span></h2>
+              <p>动态素材依赖专业人员，难以规模化。将动效模板、图层编排与渠道规格抽象为标准能力，让用户上传 KV 后批量生成和导出。</p>
               <div className="mini-compare">
-                <div className="old"><span>过去</span><b>10+ 分钟 / 张</b><small>手动改模板、逐个导出</small></div>
-                <div className="new"><span>现在</span><b>分钟级 / 批量</b><small>多规格 GIF 一键导出</small></div>
+                <div className="old"><span>人工制作</span><b>约 15 分钟 / 条</b><small>专业人员调整与导出</small></div>
+                <div className="new"><span>平台化供给</span><b>约 1 分钟 / 条</b><small>模板复用与规格封装</small></div>
               </div>
-              <div className="case-tags"><span>模板参数化</span><span>批量任务</span><span>多规格导出</span></div>
+              <p className="case-learning">设计重点：把时长、帧数与导出规范内置，降低非专业用户的操作门槛。</p>
             </div>
-            <Placeholder title="动态生成图片集合包" ratio="tall" src="/projects/图片集合包.png" />
+            <div className="dynamic-proof">
+              <Placeholder title="动态素材批量任务与图片集合包界面" src="/projects/图片集合包.png" />
+              <div className="dynamic-examples"><img src="/projects/gif1.gif" alt="平台生成的动态营销素材示例一" loading="lazy" /><img src="/projects/gif2.gif" alt="平台生成的动态营销素材示例二" loading="lazy" /></div>
+            </div>
           </article>
 
-          <SimplifyProd />
-
-          <div className="gif-showcase reveal">
-            <div className="gif-row main">
-              {DYNAMIC_GIF_COLS.map((col, colIndex) => (
-                <div className={col.length > 1 ? "gif-stack" : undefined} key={colIndex}>
-                  {col.map((src, index) => (
-                    <img key={src} src={src} alt={`动态生成案例 ${colIndex + 1}-${index + 1}`} />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
           <article className="split-case reverse reveal">
-            <Placeholder title="素材管理界面" note="建议替换：角色、渠道骨架、字效资产库" ratio="tall" src="/projects/资产库.png" />
+            <Placeholder title="角色、版式、字效与品牌素材的统一资产库" src="/projects/资产库.png" />
             <div className="split-copy">
-              <span className="eyebrow">SUB CASE 03 · 素材管理</span>
-              <h2>把素材变成<br /><span>可复用资产</span></h2>
-              <p>角色、骨架、字效与品牌资产，一次沉淀，跨模块复用。</p>
+              <span className="eyebrow">04 / 素材资产化与复用</span>
+              <h2>沉淀一次素材<br /><span>服务多条生产管线</span></h2>
+              <p>将角色、渠道骨架、字效等核心素材结构化沉淀，跨模块引用。把每次临时找素材、重配版式的成本，转为持续可复用的资产。</p>
               <div className="reuse-stat"><strong>70%+</strong><span>核心资产复用率</span></div>
-              <div className="asset-route"><span>一次沉淀</span><i>→</i><span>跨模块调用</span><i>→</i><span>持续复用</span></div>
-              <div className="case-tags"><span>统一资产库</span><span>跨模块调用</span><span>权限与版本</span></div>
+              <div className="asset-route"><span>结构化沉淀</span><i>→</i><span>跨模块引用</span><i>→</i><span>持续复用</span></div>
+              <p className="case-learning">我的工作：推进素材结构化与跨模块复用，让生产方案具备持续复用基础。</p>
             </div>
           </article>
 
           <article className="template-case">
             <div className="template-case-head reveal">
-              <div>
-                <span className="eyebrow">SUB CASE 04 · 模板替换</span>
-                <h2>解析 PSD 图层<br /><span>前端还原，批量替换</span></h2>
-              </div>
+              <div><span className="eyebrow">05 / 表格驱动的模板批量替换</span><h2>模板驱动生产<br /><span>规模化内容交付</span></h2></div>
               <div className="template-case-summary">
-                <p>在前端还原可编辑版式；导入 Excel 文案和图片后，批量替换、预览、导出。</p>
-                <div className="case-tags"><span>PSD 解析</span><span>前端还原</span><span>批量替换</span></div>
+                <div className="case-tags"><span>PSD 模板</span><span>Excel 批量数据</span><span>槽位校验</span></div>
               </div>
             </div>
-            <div className="template-case-shots">
-              <figure className="template-case-shot reveal">
-                <img src="/projects/模板替换-批量结果.webp" alt="模板替换界面，批量生成 20 套素材并预览不同成品" loading="lazy" decoding="async" />
-                <figcaption><span>01</span> 批量结果与成品预览</figcaption>
-              </figure>
-              <figure className="template-case-shot reveal">
-                <img src="/projects/模板替换-配置流程.webp" alt="模板替换界面，配置 Excel 文案、字体与替换位" loading="lazy" decoding="async" />
-                <figcaption><span>02</span> 文案、字体与替换位配置</figcaption>
-              </figure>
-              <figure className="template-case-shot reveal">
-                <img src="/projects/模板替换-成品展示.webp" alt="同一模板批量替换生成的四张不同人物与文案的卡片成品" loading="lazy" decoding="async" />
-                <figcaption><span>03</span> 同一模板的批量成品</figcaption>
-              </figure>
+            <div className="template-proof-grid reveal">
+              <figure><img src="/projects/模板替换-配置流程.webp" alt="模板批量替换的 Excel 数据、字体与图层配置界面" loading="lazy" decoding="async" /><figcaption>业务输入 · 用表格组织替换数据</figcaption></figure>
+              <figure><img src="/projects/模板替换-成品展示.webp" alt="同一模板生成的不同人物与文案卡片成品" loading="lazy" decoding="async" /><figcaption>批量交付 · 同版式，多份成品</figcaption></figure>
             </div>
           </article>
         </div>
@@ -84,41 +55,38 @@ export default function MoreWork() {
 
       <section className="projects section-pad" id="projects">
         <div className="container">
-          <div className="section-kicker project-kicker reveal"><span>SELECTED PROJECTS</span><b>项目集简介</b></div>
+          <div className="section-kicker project-kicker reveal"><span>PRODUCT MODULES</span><b>项目集 · 平台产品模块</b></div>
+        </div>
+        <figure className="capability-overview reveal">
+          <a href="/projects/flowx/platform-capability-overview.png" target="_blank" rel="noreferrer" aria-label="查看 FlowX 平台能力全景原图（在新标签页打开）">
+            <img src="/projects/flowx/platform-capability-overview.png" alt="FlowX 平台能力全景：人像切图、Logo 延展、动图与 GIF 制作、H5、渠道素材，以及图像、视频与 3D 工具" width="1820" height="841" loading="lazy" decoding="async" />
+          </a>
+          <figcaption><span>平台能力全景</span><a href="/projects/flowx/platform-capability-overview.png" target="_blank" rel="noreferrer">查看原图</a></figcaption>
+        </figure>
+        <div className="container">
           <div className="project-grid">
-            {PROJECTS.map((project) => (
-              <article className="project-card reveal" key={project.no}>
-                <Placeholder title={project.title} note="项目截图占位" src={project.image} />
-                <div className="project-body">
-                  <span className="project-no">PROJECT / {project.no}</span>
-                  <h3>{project.title}</h3><p>{project.desc}</p>
-                  <div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                </div>
-              </article>
-            ))}
+            {PROJECTS.map((project) => <article className="project-card reveal" key={project.no}><Placeholder title={project.title} src={project.image} /><div className="project-body"><span className="project-no">MODULE / {project.no}</span><h3>{project.title}</h3><p>{project.desc}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}
           </div>
         </div>
       </section>
 
       <section className="strengths section-pad" id="about">
         <div className="container">
-          <div className="section-kicker about-kicker reveal"><span>VALUE</span><b>我能为团队带来的价值</b></div>
+          <div className="section-kicker about-kicker reveal"><span>ABOUT ME</span><b>我能为团队带来的价值</b></div>
           <div className="strength-grid">
-            {STRENGTHS.map(([no, title, desc]) => (
-              <div className="strength-card reveal" key={no}><span>{no}</span><h3>{title}</h3><p>{desc}</p></div>
-            ))}
+            {STRENGTHS.map(([no, title, desc]) => <div className="strength-card reveal" key={no}><span>{no}</span><h3>{title}</h3><p>{desc}</p></div>)}
           </div>
+          <p className="about-tools reveal"><span>工具与技能</span>Figma / 产品原型与 Spec / Python / Web 前端 / 异步任务与前后端协作</p>
+          <SceneFuture embedded />
         </div>
       </section>
 
-      <SceneFuture />
-
-      <footer className="footer section-pad">
+      <footer className="footer section-pad" id="contact">
         <div className="footer-glow" />
         <div className="container footer-inner reveal">
+          <p className="eyebrow">LET’S CONNECT</p>
           <h2>让 AI 效率<br /><em>融入生产系统</em></h2>
-          <a href={RESUME_URL} download>下载简历</a>
-          <div className="footer-bottom"><span>张喆涵项目作品集</span><span>FLOWX / 2026</span></div>
+          <a href={RESUME_URL} download>下载完整简历</a>
         </div>
       </footer>
     </>
