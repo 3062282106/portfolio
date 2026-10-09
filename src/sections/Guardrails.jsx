@@ -19,14 +19,14 @@ export default function Guardrails() {
         </article>
 
         <article className="quality-evidence reveal">
-          <div className="section-kicker"><span>PLATFORM VALIDATION</span><b>平台质量账本 · 2026.09.22 — 09.30</b></div>
+          <div className="section-kicker"><span>PLATFORM VALIDATION</span></div>
           <div className="quality-metrics">
             {QUALITY_METRICS.map((item) => <div key={item.label}><strong>{item.value}</strong><h3>{item.label}</h3><span>{item.sample}</span></div>)}
           </div>
         </article>
 
         <article className="iteration-review reveal">
-          <header><span className="eyebrow">失败归因 → 迭代优先级</span><h3>11 轮需要人工收尾，分别解决</h3></header>
+          <header><span className="eyebrow">失败归因 · 迭代优先级</span><h3>11 轮需要人工收尾，分别解决</h3></header>
           <div className="iteration-list">
             {ITERATIONS.map((item) => <div className="iteration-row" key={item.title}><span className="iteration-priority">{item.no}</span><div><h4>{item.title} <small>{item.count}</small></h4><p>{item.decision}</p></div></div>)}
           </div>

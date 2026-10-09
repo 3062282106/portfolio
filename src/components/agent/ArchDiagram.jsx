@@ -19,14 +19,14 @@ export default function ArchDiagram() {
     <div className="pipeline-board">
       <div className="pipeline-boundary"><span>人工起点</span><p>说明需求 · 提供素材 · 确认范围</p></div>
       <div className="pipeline-main">
-        <div className="pipeline-caption"><b>FlowX 自动执行链路</b><span>点击节点，查看设计与验收边界</span></div>
+        <div className="pipeline-caption"><b>FlowX 自动执行链路</b><span>选择节点查看边界</span></div>
         <ol className="pipeline-steps" aria-label="素材生产与交付主流程">
           {PIPELINE.filter((step) => step.type !== "retry").map((step) => <li key={step.no}>{stepButton(step)}</li>)}
         </ol>
         <div className="pipeline-retry">
-          <p><span>↳ L1 / L2 未通过</span>依据缺陷修改后，重新经过质量门禁</p>
+          <p><span>L1 / L2 未通过</span>依据缺陷修改后，重新经过质量门禁</p>
           {stepButton(retry)}
-          <p><span>预算用尽 / 核验异常 ↗</span>升级人工确认，说明未解决项</p>
+          <p><span>预算用尽 / 核验异常</span>升级人工确认，说明未解决项</p>
         </div>
       </div>
       <div className="pipeline-boundary end"><span>人工终点</span><p>验收成品与报告 · 决定是否上架</p></div>

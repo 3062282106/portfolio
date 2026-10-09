@@ -10,7 +10,7 @@ export default function MainCase() {
         <div className="case-cover reveal">
           <span className="case-eyebrow">CASE 01 / 游戏营销素材自动化</span>
           <h2 className="case-title">把多渠道制作<br /><em>做成自助批量生产</em></h2>
-          <p className="case-intro">面向运营与设计团队，解决通用 AI 难适配内部素材、固定规格与品牌规范的问题。把渠道适配、生成兜底和批量交付纳入同一条任务路径。</p>
+          <p className="case-intro">把活动素材与渠道规范，转成一次提交的批量任务。</p>
           <div className="case-result">
             {CASE_RESULT.map((item) => (
               <div className="case-res" key={item.label}>
@@ -19,7 +19,6 @@ export default function MainCase() {
               </div>
             ))}
           </div>
-          <p className="data-note">营销自动化模块项目口径 · 已落地梦幻西游等 20+ 款游戏 · 与下方平台 Agent 质量评测分别统计</p>
         </div>
 
         <article className="chapter">
@@ -39,12 +38,9 @@ export default function MainCase() {
           <div className="decision-list">
             {MARKETING_DECISIONS.map((item) => (
               <article className="decision-row reveal" key={item.no}>
-                <div className="decision-index"><span>{item.no}</span><small>{item.label}</small></div>
+                <div className="decision-index"><span>{item.no}</span></div>
                 <div className="decision-body">
                   <h4>{item.title}</h4>
-                  <p className="decision-problem">{item.problem}</p>
-                  <p>{item.decision}</p>
-                  <p className="decision-outcome">{item.outcome}</p>
                 </div>
               </article>
             ))}
@@ -58,7 +54,6 @@ export default function MainCase() {
             <FlowLane title="产品化流程 · 自助批量任务" tone="new" items={NEW_FLOW} />
           </div>
           <div className="system-map reveal marketing-system">
-            <div className="system-inputs"><span>活动目标</span><span>渠道资源位</span><span>品牌与角色资产</span><span>版式与内容策略</span></div>
             <div className="system-engine">
               <div className="engine-title"><b>FLOWX 营销生产模块</b><span>将业务约束前置到生成与交付流程</span></div>
               <div className="engine-layers">
@@ -68,7 +63,6 @@ export default function MainCase() {
                 <div><span>迭代</span><b>数据回流与审核入库</b><small>清洗投流数据，定期更新策略</small></div>
               </div>
             </div>
-            <div className="system-outputs"><span>多规格成品</span><span>可编辑底图</span><span>批量任务结果</span><span>可复用策略与资产</span></div>
           </div>
         </article>
 

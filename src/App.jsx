@@ -6,6 +6,7 @@ import HeroSection from "./sections/HeroSection.jsx";
 import MainCase from "./sections/MainCase.jsx";
 import MoreWork from "./sections/MoreWork.jsx";
 import "./portfolio.css";
+import "./editorial.css";
 
 /**
  * 作品集根组件 — 组装各区块

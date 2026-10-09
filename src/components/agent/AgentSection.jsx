@@ -12,13 +12,13 @@ export default function AgentSection() {
           <span className="agent-kicker">CASE 02 / 多模态资源生产 Agent</span>
           <h2>把一句业务需求<em>组织成可验收的交付</em></h2>
         </header>
-        <div className="case-ownership reveal"><span>我的工作</span><p>定义四类代理职责与执行契约，设计交付前门禁及评分标准，建设边界评测集与指标口径。</p></div>
+        <div className="case-ownership reveal"><span>我的工作</span><p>代理职责 · 执行契约 · 质量门禁 · 边界评测</p></div>
 
         <article className="agent-contribution reveal">
           <div className="agent-contract">
             <span className="eyebrow">执行契约</span>
             <h3>先约束职责，再派发任务</h3>
-            <p>将工具白名单、单轮提交配额和交付产物归属，转为派发前可校验的结构化规则。让权限与提交边界成为系统约束。</p>
+            <p>权限、配额与产物归属，派发前校验。</p>
           </div>
           <div className="agent-roles">
             {AGENT_ROLES.map((role) => <div key={role.title}><h4>{role.title}</h4><p>{role.text}</p></div>)}

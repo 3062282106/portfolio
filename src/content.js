@@ -13,16 +13,26 @@ export const NAV = [
 ];
 
 export const PLATFORM_METRICS = [
-  { value: "46+", label: "可调用 AI 管线" },
+  { value: "46+", label: "AI 管线" },
   { value: "58", label: "覆盖游戏" },
-  { value: "37,461", label: "上线至今累计调用（套）" },
+  { value: "37,461", label: "累计调用 · 套" },
+  { value: "50–200%", unit: "+", label: "单模块效率提升" },
+  { value: "31.6%", label: "月均产量提升" },
+  { value: "54.3%", label: "渠道单素材成本降低" },
+];
+
+export const PLATFORM_VALUE = [
+  { title: "提效", value: "5,300+", unit: "套 / 月", label: "单月产量峰值" },
+  { title: "降低门槛", value: "2", unit: "步", label: "上传素材，接收结果" },
+  { title: "资产沉淀", value: "900+", unit: "套广告位", label: "规范内置，管线复用" },
+  { title: "业务适配", value: "22+", unit: "业务环节", label: "赛事 · 运营 · 营销" },
 ];
 
 export const CASE_RESULT = [
-  { value: "150+", unit: "素材", label: "单任务最多产出 · 12–15 分钟" },
-  { value: "64", unit: "渠道", label: "适配主流宣发渠道" },
-  { value: "90%", unit: "", label: "模块业务验收一次通过率" },
-  { value: "70%", unit: "↓", label: "单张模型调用成本降低约" },
+  { value: "150+", unit: "素材", label: "单任务最多 · 12–15 分钟" },
+  { value: "64", unit: "渠道", label: "适配宣发渠道" },
+  { value: "90%", unit: "", label: "模块验收一次通过率" },
+  { value: "70%", unit: "", label: "单张模型调用成本降低约" },
 ];
 
 export const PAINS = [
@@ -38,25 +48,25 @@ export const MARKETING_DECISIONS = [
   {
     no: "01", title: "把专业参数收敛为业务输入", label: "降低使用门槛",
     problem: "参数理解成本高，用户容易在配置环节中断。",
-    decision: "以活动、渠道和素材组织任务，把高阶参数收敛为智能默认项；让用户持续看到任务状态与失败指引。",
-    outcome: "运营自助发起批量任务，减少跨工具操作。",
+    decision: "活动、渠道与素材作为输入；参数默认，状态可见。",
+    outcome: "运营自助发起批量任务。",
   },
   {
     no: "02", title: "为生成波动设计兜底路径", label: "交付质量",
     problem: "单次模型生成存在波动，失败后缺少可继续的路径。",
-    decision: "采用 A/B 双版生成与失败自矫正机制，以业务验收结果判断任务完成。",
-    outcome: "模块一次验收通过率 90%，兜底后可用率 95%。",
+    decision: "双版生成，失败自动修正；以验收结果判定完成。",
+    outcome: "一次通过 90% · 兜底可用 95%",
   },
   {
     no: "03", title: "把内容策略与渠道规格资产化", label: "质量与成本",
     problem: "提示词、投放经验和素材规格分散，难以复用。",
-    decision: "沉淀 614 条场景数据、六类投放策略，按渠道匹配；设计数据回流、清洗、审核入库机制，并采用分层路由。",
-    outcome: "同一套策略持续迭代，单张模型调用成本降低约 70%。",
+    decision: "场景策略与渠道规范入库，按需路由并持续回流。",
+    outcome: "614 条场景数据 · 6 类策略 · 调用成本降低约 70%",
   },
 ];
 
 export const PIPELINE = [
-  { no: "01", title: "需求解析", hint: "目标 → 参数", type: "execute", detail: "将自然语言目标拆成结构化任务，明确活动、输入素材与交付范围。", rule: "必填参数缺失或取值非法，拦截后续执行。" },
+  { no: "01", title: "需求解析", hint: "目标与参数", type: "execute", detail: "将自然语言目标拆成结构化任务，明确活动、输入素材与交付范围。", rule: "必填参数缺失或取值非法，拦截后续执行。" },
   { no: "02", title: "规格推导", hint: "渠道与资源位", type: "execute", detail: "从已上架模板与渠道配置读取尺寸、体积上限、安全区和批次规模。", rule: "规格必须有存量配置依据，无法推导时停止提交。" },
   { no: "03", title: "素材生成", hint: "生成与合成", type: "execute", detail: "按任务调用出图、编辑与合成工具，登记候选产物并关联本轮需求。", rule: "产物文件真实存在且可读取，才能进入质检。" },
   { no: "04", title: "客观校验 L1", hint: "确定性交付底线", type: "gate", detail: "逐张核验尺寸、比例、格式、透明底、体积上限与必填槽位。", rule: "硬性问题直接拦截，不进入视觉评分。" },

@@ -1,5 +1,5 @@
 import HeroCanvas from "../components/HeroCanvas.jsx";
-import { PLATFORM_METRICS } from "../content.js";
+import { PLATFORM_METRICS, PLATFORM_VALUE } from "../content.js";
 
 /**
  * 首屏与项目背景
@@ -33,7 +33,7 @@ export default function HeroSection() {
           <div className="hero-actions">
             <a className="hero-cta" href="#main-case">查看产品案例</a>
           </div>
-          <a className="hero-scroll" href="#background">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
+          <a className="hero-scroll" href="#background">SCROLL TO EXPLORE</a>
         </div>
       </section>
 
@@ -43,23 +43,23 @@ export default function HeroSection() {
             <span className="eyebrow">PROJECT BACKGROUND</span>
             <h2 className="bg-title">FlowX<br /><span>面向业务的 AI 应用平台</span></h2>
             <div className="bg-body">
-              <p>为运营、设计与赛事团队，把分散的生成工具、素材规范与批量任务，组织成可直接调用的生产管线。</p>
+              <p>为运营、设计与赛事，提供可直接调用的生产管线。</p>
             </div>
           </div>
           <div className="bg-shot reveal">
             <figure className="shot3d">
-              <div className="shot3d-glow" />
-              <div className="shot3d-frame"><img src="/platform-home.png" alt="FlowX 内容制作中心首页" /></div>
-              <div className="shot3d-shadow" />
-              <figcaption>FlowX 内容制作中心 · 业务卡片承载生产能力</figcaption>
+              <div className="shot3d-frame"><img src="/projects/flowx/platform-home-v17.png" alt="FlowX 内容制作中心 V1.7.0 首页与应用运行数据" width="2048" height="1152" /></div>
             </figure>
           </div>
         </div>
         <div className="container platform-overview reveal">
+          <div className="platform-value-heading"><span className="eyebrow">PLATFORM IMPACT / 平台价值</span><small>截至 2026.09</small></div>
           <div className="platform-metrics">
-            {PLATFORM_METRICS.map((metric) => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}
+            {PLATFORM_METRICS.map((metric) => <div key={metric.label}><strong>{metric.value}{metric.unit && <small>{metric.unit}</small>}</strong><span>{metric.label}</span></div>)}
           </div>
-          <p className="data-note">平台整体规模 · 截至 2026.09</p>
+          <div className="platform-value-grid">
+            {PLATFORM_VALUE.map((item, index) => <article key={item.title}><span className="value-index">0{index + 1}</span><h3>{item.title}</h3><p>{item.label}</p><div className="value-result"><strong>{item.value}</strong><span>{item.unit}</span></div></article>)}
+          </div>
         </div>
       </section>
     </>

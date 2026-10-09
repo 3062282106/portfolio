@@ -26,70 +26,54 @@
 }
 
 .loop-board {
-  padding: 36px 32px 28px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: #080c0a;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--line);
 }
 .loop-grid {
+  --loop-link: rgba(23, 226, 153, .85);
+  --loop-return: rgba(23, 226, 153, .6);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px 20px;
+  gap: 40px;
   position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .loop-node {
-  padding: 16px 10px;
-  text-align: center;
-  color: var(--green);
-  font-size: 14px;
-  font-weight: 550;
-  border: 1px solid var(--green);
-  border-radius: 8px;
-  background: #050706;
-}
-.loop-dash {
   position: relative;
-  border-top: 1px dashed rgba(23, 226, 153, .55);
-  align-self: center;
-}
-.loop-dash:nth-child(2)::before {
-  content: "←";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  color: var(--green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-height: 96px;
+  padding: 20px 12px;
+  text-align: center;
+  color: var(--text);
   font-size: 14px;
-  transform: translate(-40%, -50%);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #080c0a;
 }
-.loop-grid .loop-node:nth-child(1) { position: relative; }
-.loop-grid .loop-node:nth-child(1)::after,
-.loop-grid .loop-node:nth-child(8)::before {
-  content: "↓";
-  position: absolute;
-  left: 50%;
-  color: var(--green);
-  font-size: 14px;
-  transform: translateX(-50%);
-}
-.loop-grid .loop-node:nth-child(1)::after { top: calc(100% + 2px); }
-.loop-grid .loop-node:nth-child(8) { position: relative; }
-.loop-grid .loop-node:nth-child(8)::before {
-  content: "↑";
-  bottom: calc(100% + 2px);
-}
-.loop-grid .loop-node:nth-child(n + 5):not(:last-child) { position: relative; }
-.loop-grid .loop-node:nth-child(n + 5):not(:last-child)::after {
-  content: "→";
-  position: absolute;
-  right: -16px;
-  top: 50%;
-  color: var(--green);
-  transform: translateY(-50%);
-}
+.loop-node span { color: var(--muted); font-size: 10px; letter-spacing: .12em; }
+.loop-node b { font-weight: 500; }
+.loop-need { grid-area: 1 / 1; }
+.loop-build { grid-area: 2 / 1; }
+.loop-use { grid-area: 2 / 2; }
+.loop-feedback { grid-area: 2 / 3; }
+.loop-iterate { grid-area: 2 / 4; }
+.loop-release { grid-area: 1 / 4; }
+.loop-need, .loop-release { border-color: rgba(23,226,153,.3); color: var(--green); background: rgba(23,226,153,.025); }
+.loop-node::after { content: ""; position: absolute; pointer-events: none; }
+/* Plain connecting lines form a continuous loop. */
+.loop-build::after, .loop-use::after, .loop-feedback::after { right: -40px; top: calc(50% - 1.5px); width: 40px; border-top: 3px solid var(--loop-link); }
+.loop-need::after { left: calc(50% - 1.5px); bottom: -40px; height: 40px; border-left: 3px solid var(--loop-link); }
+.loop-iterate::after { left: calc(50% - 1.5px); top: -40px; height: 40px; border-left: 3px solid var(--loop-link); }
+.loop-return { grid-area: 1 / 2 / 2 / 4; align-self: center; position: relative; margin: 0 -40px; height: 2px; border-top: 2px solid var(--loop-return); }
 .loop-caption {
-  margin: 24px 0 0;
+  margin: 28px 0 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.7;
 }
 .loop-caption b { color: var(--green); font-weight: 560; }
@@ -138,11 +122,12 @@
 }
 
 @media (max-width: 900px) {
-  .loop-grid { grid-template-columns: 1fr 1fr; }
-  .loop-dash { display: none; }
-  .loop-grid .loop-node:nth-child(1)::after,
-  .loop-grid .loop-node:nth-child(8)::before,
-  .loop-grid .loop-node:nth-child(n + 5):not(:last-child)::after { display: none; }
   .scene-role { grid-template-columns: 1fr; gap: 10px; }
   .scene-role h3 small { display: block; margin: 6px 0 0; }
+}
+@media (max-width: 680px) {
+  .loop-grid { grid-template-columns: 1fr; gap: 28px; padding-right: 40px; }
+  .loop-node { grid-area: auto; min-height: 88px; padding: 16px 12px; }
+  .loop-node:not(.loop-release)::after { left: calc(50% - 1.5px); right: auto; top: auto; bottom: -28px; width: 0; height: 28px; border: 0; border-left: 3px solid var(--loop-link); }
+  .loop-return { grid-area: auto; position: absolute; align-self: stretch; right: 0; top: 44px; bottom: 44px; width: 40px; height: auto; margin: 0; border: 2px solid var(--loop-return); border-left: 0; border-radius: 0 8px 8px 0; }
 }

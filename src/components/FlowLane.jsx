@@ -11,7 +11,6 @@ export default function FlowLane({ title, tone, items }) {
           <div className="lane-step" key={item}>
             <span>{String(index + 1).padStart(2, "0")}</span>
             <b>{item}</b>
-            {index < items.length - 1 && <i>→</i>}
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import Placeholder from "../components/Placeholder.jsx";
 import { PROJECTS, RESUME_URL, STRENGTHS } from "../content.js";
 import SceneFuture from "./SceneFuture.jsx";
+import MarketEvidence from "./MarketEvidence.jsx";
 
 const CAPABILITY_IMAGE = "/projects/flowx/platform-capability-overview.png";
 const CAPABILITY_GROUPS = [
@@ -22,12 +23,11 @@ export default function MoreWork() {
             <div className="split-copy">
               <span className="eyebrow">03 / 动态内容供给平台化</span>
               <h2>把专业动效制作<br /><span>封装为自助生产能力</span></h2>
-              <p>动态素材依赖专业人员，难以规模化。将动效模板、图层编排与渠道规格抽象为标准能力，让用户上传 KV 后批量生成和导出。</p>
+              <p>上传 KV，批量生成动效并按渠道规格导出。</p>
               <div className="mini-compare">
                 <div className="old"><span>人工制作</span><b>约 15 分钟 / 条</b><small>专业人员调整与导出</small></div>
                 <div className="new"><span>平台化供给</span><b>约 1 分钟 / 条</b><small>模板复用与规格封装</small></div>
               </div>
-              <p className="case-learning">设计重点：把时长、帧数与导出规范内置，降低非专业用户的操作门槛。</p>
             </div>
             <div className="dynamic-proof">
               <Placeholder title="动态素材批量任务与图片集合包界面" src="/projects/图片集合包.png" />
@@ -40,10 +40,9 @@ export default function MoreWork() {
             <div className="split-copy">
               <span className="eyebrow">04 / 素材资产化与复用</span>
               <h2>沉淀一次素材<br /><span>服务多条生产管线</span></h2>
-              <p>将角色、渠道骨架、字效等核心素材结构化沉淀，跨模块引用。把每次临时找素材、重配版式的成本，转为持续可复用的资产。</p>
+              <p>角色、版式与字效结构化入库，跨模块复用。</p>
               <div className="reuse-stat"><strong>70%+</strong><span>核心资产复用率</span></div>
-              <div className="asset-route"><span>结构化沉淀</span><i>→</i><span>跨模块引用</span><i>→</i><span>持续复用</span></div>
-              <p className="case-learning">我的工作：推进素材结构化与跨模块复用，让生产方案具备持续复用基础。</p>
+              <div className="asset-route"><span>结构化沉淀</span><span>跨模块引用</span><span>持续复用</span></div>
             </div>
           </article>
 
@@ -58,6 +57,8 @@ export default function MoreWork() {
           </article>
         </div>
       </section>
+
+      <MarketEvidence />
 
       <section className="projects section-pad" id="projects">
         <div className="container">
@@ -84,7 +85,7 @@ export default function MoreWork() {
 
       <section className="strengths section-pad" id="about">
         <div className="container">
-          <div className="section-kicker about-kicker reveal"><span>ABOUT ME</span><b>我能为团队带来的价值</b></div>
+          <div className="section-kicker about-kicker reveal"><span>ABOUT ME</span></div>
           <div className="strength-grid">
             {STRENGTHS.map(([no, title, desc]) => <div className="strength-card reveal" key={no}><span>{no}</span><h3>{title}</h3><p>{desc}</p></div>)}
           </div>

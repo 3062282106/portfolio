@@ -1,8 +1,14 @@
 import { SCENE_ROLES } from "../content.js";
 import "./scene-future.css";
 
-const LOOP_TOP = ["真实需求", "投入使用"];
-const LOOP_BOT = ["建设能力", "用起来", "收集反馈", "打磨迭代"];
+const LOOP_STEPS = [
+  { label: "真实需求", type: "need" },
+  { label: "建设能力", type: "build" },
+  { label: "用起来", type: "use" },
+  { label: "收集反馈", type: "feedback" },
+  { label: "打磨迭代", type: "iterate" },
+  { label: "投入使用", type: "release" },
+];
 
 /**
  * 场景与未来 — 从做功能到做闭环，以及谁在用
@@ -19,16 +25,13 @@ export default function SceneFuture({ embedded = false }) {
         </header>
 
         <div className="loop-board reveal">
-          <div className="loop-grid">
-            <div className="loop-node">{LOOP_TOP[0]}</div>
-            <span className="loop-dash" aria-hidden="true" />
-            <span className="loop-dash" aria-hidden="true" />
-            <div className="loop-node">{LOOP_TOP[1]}</div>
-            {LOOP_BOT.map((step) => (
-              <div className="loop-node" key={step}>{step}</div>
+          <ol className="loop-grid" aria-label="需求、建设、使用、反馈、迭代与投入使用，反馈回到真实需求形成闭环">
+            {LOOP_STEPS.map((step, index) => (
+              <li className={`loop-node loop-${step.type}`} key={step.type}><span>0{index + 1}</span><b>{step.label}</b></li>
             ))}
-          </div>
-          <p className="loop-caption"><b>让平台越用越贴合业务</b>——铺好的能力，靠循环持续进化</p>
+            <li className="loop-return" aria-hidden="true" />
+          </ol>
+          <p className="loop-caption">让平台越用越贴合业务</p>
         </div>
 
         <div className="scene-roles reveal">

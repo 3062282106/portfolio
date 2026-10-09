@@ -9,7 +9,6 @@
 .pipeline-caption > span { color: var(--muted); font-size: 11px; }
 .pipeline-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px; list-style: none; padding: 0; margin: 0; }
 .pipeline-steps > li { position: relative; min-width: 0; }
-.pipeline-steps > li:not(:last-child)::after { content: "→"; position: absolute; left: calc(100% + 5px); top: 50%; transform: translateY(-50%); color: var(--dim); font-size: 14px; }
 .pipeline-node { width: 100%; height: 100%; padding: 20px 12px; display: flex; flex-direction: column; align-items: flex-start; border: 1px solid var(--line); border-radius: 10px; background: #050706; color: var(--text); cursor: pointer; text-align: left; transition: border-color .2s, background .2s; }
 .pipeline-node > span { font-size: 10px; color: var(--green); margin-bottom: 18px; letter-spacing: .08em; }
 .pipeline-node b { font-size: 14px; font-weight: 550; line-height: 1.5; }
@@ -34,7 +33,6 @@
 .pipeline-rule b { color: var(--green); font-size: 11px; font-weight: 500; margin-right: 16px; }
 @media (max-width: 980px) {
   .pipeline-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .pipeline-steps > li::after { display: none; }
   .pipeline-detail { grid-template-columns: 170px 1fr; }
 }
 @media (max-width: 680px) {
