@@ -73,13 +73,12 @@ export default function MainCase() {
         </article>
 
         <article className="chapter result-chapter">
-          <ChapterHead eyebrow="业务验证" title="同一活动，" highlight="适配多个资源位" desc="平台真实案例：梦幻西游手游回流活动。同一批产出 14 张素材，覆盖 9 种已上架资源位；下方展示其中 3 张成品。" />
+          <ChapterHead eyebrow="业务验证" title="同一活动，" highlight="适配多个资源位" />
           <div className="delivery-gallery reveal">
             <figure className="delivery-wide"><img src="/projects/flowx/marketing-wide.png" alt="梦幻西游回流活动插屏广告成品，1110×477" loading="lazy" decoding="async" /><figcaption>插屏广告 <span>1110 × 477</span></figcaption></figure>
             <figure className="delivery-portrait"><img src="/projects/flowx/marketing-popup.png" alt="同批回流活动大神启动弹窗成品，580×870" loading="lazy" decoding="async" /><figcaption>启动弹窗 <span>580 × 870</span></figcaption></figure>
             <figure className="delivery-landscape"><img src="/projects/flowx/marketing-feed.png" alt="同批回流活动内容流单图成品，690×188" loading="lazy" decoding="async" /><figcaption>内容流单图 <span>690 × 188</span></figcaption></figure>
           </div>
-          <p className="data-note">平台案例成果 · 版式、安全区与槽位由渠道目录约束，角色身份单独引用参考素材</p>
           <details className="evidence-details reveal">
             <summary>查看营销模块界面与生成预览 <span aria-hidden="true">＋</span></summary>
             <div className="case-shots">

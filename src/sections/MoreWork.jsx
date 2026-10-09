@@ -50,13 +50,10 @@ export default function MoreWork() {
           <article className="template-case">
             <div className="template-case-head reveal">
               <div><span className="eyebrow">05 / 表格驱动的模板批量替换</span><h2>模板驱动生产<br /><span>规模化内容交付</span></h2></div>
-              <div className="template-case-summary">
-                <div className="case-tags"><span>PSD 模板</span><span>Excel 批量数据</span><span>槽位校验</span></div>
-              </div>
             </div>
             <div className="template-proof-grid reveal">
-              <figure><img src="/projects/模板替换-配置流程.webp" alt="模板批量替换的 Excel 数据、字体与图层配置界面" loading="lazy" decoding="async" /><figcaption>业务输入 · 用表格组织替换数据</figcaption></figure>
-              <figure><img src="/projects/模板替换-成品展示.webp" alt="同一模板生成的不同人物与文案卡片成品" loading="lazy" decoding="async" /><figcaption>批量交付 · 同版式，多份成品</figcaption></figure>
+              <figure><img src="/projects/模板替换-配置流程.webp" alt="模板批量替换的 Excel 数据、字体与图层配置界面" loading="lazy" decoding="async" /></figure>
+              <figure><img src="/projects/模板替换-成品展示.webp" alt="同一模板生成的不同人物与文案卡片成品" loading="lazy" decoding="async" /></figure>
             </div>
           </article>
         </div>

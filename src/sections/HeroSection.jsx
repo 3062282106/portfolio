@@ -30,7 +30,6 @@ export default function HeroSection() {
             </span>
             <span className="line bold">设计 AI 产品</span>
           </h1>
-          <p className="hero-summary">参与 FlowX AI 应用平台建设<br />关注业务流程、Agent 编排与可验证的交付质量</p>
           <div className="hero-actions">
             <a className="hero-cta" href="#main-case">查看产品案例</a>
           </div>
