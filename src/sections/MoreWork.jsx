@@ -46,13 +46,18 @@ export default function MoreWork() {
             </div>
           </article>
 
-          <article className="template-case">
+          <article className="template-case" id="template-case">
             <div className="template-case-head reveal">
               <div><span className="eyebrow">05 / 表格驱动的模板批量替换</span><h2>模板驱动生产<br /><span>规模化内容交付</span></h2></div>
             </div>
             <div className="template-proof-grid reveal">
               <figure><img src="/projects/模板替换-配置流程.webp" alt="模板批量替换的 Excel 数据、字体与图层配置界面" loading="lazy" decoding="async" /></figure>
-              <figure><img src="/projects/模板替换-成品展示.webp" alt="同一模板生成的不同人物与文案卡片成品" loading="lazy" decoding="async" /></figure>
+              <div className="template-team-grid">
+                <figure><img src="/projects/flowx/template-team-act.png" alt="ACT 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
+                <figure><img src="/projects/flowx/template-team-arneb.png" alt="Arneb with WoG 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
+                <figure><img src="/projects/flowx/template-team-ft.png" alt="FT 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
+                <figure><img src="/projects/flowx/template-team-rival.png" alt="Rival Esports 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
+              </div>
             </div>
           </article>
         </div>

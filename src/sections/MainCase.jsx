@@ -5,24 +5,15 @@ import { CASE_RESULT, MARKETING_DECISIONS, NEW_FLOW, OLD_FLOW, PAINS } from "../
 
 export default function MainCase() {
   return (
-    <section className="main-case section-pad" id="main-case">
+    <section className="main-case section-pad case-study" id="main-case">
       <div className="container">
         <div className="case-cover reveal">
           <span className="case-eyebrow">CASE 01 / 游戏营销素材自动化</span>
-          <h2 className="case-title">把多渠道制作<br /><em>做成自助批量生产</em></h2>
-          <p className="case-intro">把活动素材与渠道规范，转成一次提交的批量任务。</p>
-          <div className="case-result">
-            {CASE_RESULT.map((item) => (
-              <div className="case-res" key={item.label}>
-                <strong>{item.value}<small>{item.unit}</small></strong>
-                <span>{item.label}</span>
-              </div>
-            ))}
-          </div>
+          <h2 className="case-title">游戏营销素材<br /><em>自动化生产管线</em></h2>
         </div>
 
         <article className="chapter">
-          <ChapterHead eyebrow="需求分析" title="三个阻塞点，" highlight="决定产品切入点" />
+          <ChapterHead eyebrow="01 / 项目背景" title="同一活动，" highlight="反复适配不同渠道" />
           <div className="pain-grid reveal">
             {PAINS.map((pain) => (
               <div className="pain-card" key={pain.no}>
@@ -34,7 +25,7 @@ export default function MainCase() {
         </article>
 
         <article className="chapter">
-          <ChapterHead eyebrow="产品决策" title="让用户表达业务，" highlight="让系统处理复杂度" />
+          <ChapterHead eyebrow="02 / 我的职责" title="业务需求建模与" highlight="批量生产产品化" />
           <div className="decision-list">
             {MARKETING_DECISIONS.map((item) => (
               <article className="decision-row reveal" key={item.no}>
@@ -47,31 +38,39 @@ export default function MainCase() {
           </div>
         </article>
 
-        <article className="chapter">
-          <ChapterHead eyebrow="流程设计" title="运营发起任务，" highlight="系统承接生产" />
+        <article className="chapter" id="marketing-design">
+          <ChapterHead eyebrow="03 / 关键设计" title="将场景与渠道规范" highlight="前置到生产流程" />
           <div className="flow-stack reveal">
             <FlowLane title="原流程 · 人工逐项衔接" tone="old" items={OLD_FLOW} />
             <FlowLane title="产品化流程 · 自助批量任务" tone="new" items={NEW_FLOW} />
           </div>
           <div className="system-map reveal marketing-system">
             <div className="system-engine">
-              <div className="engine-title"><b>FLOWX 营销生产模块</b><span>将业务约束前置到生成与交付流程</span></div>
+              <div className="engine-title"><b>从场景策略到成品验收</b><span>业务配置进入生成与合成链路</span></div>
               <div className="engine-layers">
-                <div><span>策略</span><b>614 条场景数据</b><small>六类投放策略，按渠道匹配</small></div>
-                <div><span>生成</span><b>分层路由 + 双版生成</b><small>平衡模型调用成本与可用率</small></div>
-                <div><span>体验</span><b>智能默认与状态反馈</b><small>降低调参成本，解释任务进度</small></div>
-                <div><span>迭代</span><b>数据回流与审核入库</b><small>清洗投流数据，定期更新策略</small></div>
+                <div><span>策略</span><b className="engine-data"><strong>614</strong><span>条场景数据</span></b><small>六类投放策略，按渠道匹配</small></div>
+                <div><span>生成</span><b>版式与主体双参考</b><small>分别约束布局与角色身份</small></div>
+                <div><span>合成</span><b>安全区与资源位适配</b><small>按渠道配置排版与导出</small></div>
+                <div><span>验收</span><b>视觉核验与失败修正</b><small>缺陷回传，结果统一交付</small></div>
               </div>
             </div>
           </div>
         </article>
 
         <article className="chapter result-chapter">
-          <ChapterHead eyebrow="业务验证" title="同一活动，" highlight="适配多个资源位" />
+          <ChapterHead eyebrow="04 / 验证结果" title="一次提交，" highlight="交付多规格成品" />
+          <div className="case-result reveal">
+            {CASE_RESULT.map((item) => (
+              <div className="case-res" key={item.label}>
+                <strong>{item.value}<small>{item.unit}</small></strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
           <div className="delivery-gallery reveal">
-            <figure className="delivery-wide"><img src="/projects/flowx/marketing-wide.png" alt="梦幻西游回流活动插屏广告成品，1110×477" loading="lazy" decoding="async" /><figcaption>插屏广告 <span>1110 × 477</span></figcaption></figure>
-            <figure className="delivery-portrait"><img src="/projects/flowx/marketing-popup.png" alt="同批回流活动大神启动弹窗成品，580×870" loading="lazy" decoding="async" /><figcaption>启动弹窗 <span>580 × 870</span></figcaption></figure>
-            <figure className="delivery-landscape"><img src="/projects/flowx/marketing-feed.png" alt="同批回流活动内容流单图成品，690×188" loading="lazy" decoding="async" /><figcaption>内容流单图 <span>690 × 188</span></figcaption></figure>
+            <figure className="delivery-wide"><img src="/projects/flowx/marketing-wide.png" alt="梦幻西游回流活动插屏广告成品，1110×477" loading="lazy" decoding="async" /></figure>
+            <figure className="delivery-portrait"><img src="/projects/flowx/marketing-popup.png" alt="同批回流活动大神启动弹窗成品，580×870" loading="lazy" decoding="async" /></figure>
+            <figure className="delivery-landscape"><img src="/projects/flowx/marketing-feed.png" alt="同批回流活动内容流单图成品，690×188" loading="lazy" decoding="async" /></figure>
           </div>
           <details className="evidence-details reveal">
             <summary>查看营销模块界面与生成预览 <span aria-hidden="true">＋</span></summary>

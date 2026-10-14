@@ -21,10 +21,12 @@ export default function ArchDiagram() {
       <div className="pipeline-main">
         <div className="pipeline-caption"><b>FlowX 自动执行链路</b><span>选择节点查看边界</span></div>
         <ol className="pipeline-steps" aria-label="素材生产与交付主流程">
-          {PIPELINE.filter((step) => step.type !== "retry").map((step) => <li key={step.no}>{stepButton(step)}</li>)}
+          {PIPELINE.filter((step) => step.type !== "retry").map((step) => <li key={step.no} className={step.type}>{stepButton(step)}</li>)}
         </ol>
         <div className="pipeline-retry">
-          <p><span>L1 / L2 未通过</span>依据缺陷修改后，重新经过质量门禁</p>
+          <span className="pipeline-gate-branch" aria-hidden="true" />
+          <span className="pipeline-return-connection" aria-hidden="true" />
+          <p><span>L1 / L2 未通过</span>携带缺陷重做，返回素材生成</p>
           {stepButton(retry)}
           <p><span>预算用尽 / 核验异常</span>升级人工确认，说明未解决项</p>
         </div>

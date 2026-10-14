@@ -134,6 +134,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .template-case { padding-top: 88px; }
 .template-case-head { grid-template-columns: 1fr; }
 .template-proof-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+.template-case[id] { scroll-margin-top: 88px; }
+.template-team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.template-team-grid img { display: block; width: 100%; height: auto; }
+@media (max-width: 680px) {
+  .template-team-grid { gap: 12px; }
+}
 .project-grid { margin-top: 36px; }
 .capability-overview { width: min(var(--container), calc(100% - 64px)); margin: 40px auto 64px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
 .capability-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 24px; }

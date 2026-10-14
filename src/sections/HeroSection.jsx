@@ -43,7 +43,7 @@ export default function HeroSection() {
             <span className="eyebrow">PROJECT BACKGROUND</span>
             <h2 className="bg-title">FlowX<br /><span>面向业务的 AI 应用平台</span></h2>
             <div className="bg-body">
-              <p>为运营、设计与赛事，提供可直接调用的生产管线。</p>
+              <p>为运营、设计与赛事，提供可直接调用的生产管线</p>
             </div>
           </div>
           <div className="bg-shot reveal">
