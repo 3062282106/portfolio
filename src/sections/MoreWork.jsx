@@ -19,15 +19,20 @@ export default function MoreWork() {
         <div className="container">
           <div className="section-kicker sub-kicker reveal"><span>BUSINESS CASES</span><b>相同的产品思路，落到不同生产场景</b></div>
 
-          <article className="split-case reveal">
-            <div className="split-copy">
-              <span className="eyebrow">03 / 动态内容供给平台化</span>
-              <h2>把专业动效制作<br /><span>封装为自助生产能力</span></h2>
-              <p>上传 KV，批量生成动效并按渠道规格导出。</p>
-              <div className="mini-compare">
-                <div className="old"><span>人工制作</span><b>约 15 分钟 / 条</b><small>专业人员调整与导出</small></div>
-                <div className="new"><span>平台化供给</span><b>约 1 分钟 / 条</b><small>模板复用与规格封装</small></div>
+          <article className="split-case dynamic-case reveal" id="dynamic-case">
+            <div className="dynamic-case-intro">
+              <div className="split-copy">
+                <span className="eyebrow">03 / 动态内容供给平台化</span>
+                <h2>把专业动效制作<br /><span>封装为自助生产能力</span></h2>
+                <p>上传 KV，批量生成动效并按渠道规格导出。</p>
+                <div className="mini-compare">
+                  <div className="old"><span>人工制作</span><b>约 15 分钟 / 条</b><small>专业人员调整与导出</small></div>
+                  <div className="new"><span>平台化供给</span><b>约 1 分钟 / 条</b><small>模板复用与规格封装</small></div>
+                </div>
               </div>
+              <figure className="dynamic-demo">
+                <img src="/projects/flowx/gif-generation-demo.gif" alt="GIF 自助生产演示：上传图片、配置动效并生成动态素材" width="1600" height="900" loading="lazy" decoding="async" />
+              </figure>
             </div>
             <div className="dynamic-proof">
               <Placeholder title="动态素材批量任务与图片集合包界面" src="/projects/图片集合包.png" />
@@ -35,22 +40,12 @@ export default function MoreWork() {
             </div>
           </article>
 
-          <article className="split-case reverse reveal">
-            <Placeholder title="角色、版式、字效与品牌素材的统一资产库" src="/projects/资产库.png" />
-            <div className="split-copy">
-              <span className="eyebrow">04 / 素材资产化与复用</span>
-              <h2>沉淀一次素材<br /><span>服务多条生产管线</span></h2>
-              <p>角色、版式与字效结构化入库，跨模块复用。</p>
-              <div className="reuse-stat"><strong>70%+</strong><span>核心资产复用率</span></div>
-              <div className="asset-route"><span>结构化沉淀</span><span>跨模块引用</span><span>持续复用</span></div>
-            </div>
-          </article>
-
           <article className="template-case" id="template-case">
             <div className="template-case-head reveal">
-              <div><span className="eyebrow">05 / 表格驱动的模板批量替换</span><h2>模板驱动生产<br /><span>规模化内容交付</span></h2></div>
+              <div><span className="eyebrow">04 / 表格驱动的模板批量替换</span><h2>模板驱动生产<br /><span>规模化内容交付</span></h2></div>
             </div>
             <div className="template-proof-grid reveal">
+              <figure><img src="/projects/flowx/template-replacement-demo.gif" alt="模板替换演示：同一套设计批量替换图片与文字，生成卡牌和图鉴素材" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
               <figure><img src="/projects/模板替换-配置流程.webp" alt="模板批量替换的 Excel 数据、字体与图层配置界面" loading="lazy" decoding="async" /></figure>
               <div className="template-team-grid">
                 <figure><img src="/projects/flowx/template-team-act.png" alt="ACT 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
@@ -83,7 +78,7 @@ export default function MoreWork() {
         </figure>
         <div className="container">
           <div className="project-grid">
-            {PROJECTS.map((project) => <article className="project-card reveal" key={project.no}><Placeholder title={project.title} src={project.image} /><div className="project-body"><span className="project-no">MODULE / {project.no}</span><h3>{project.title}</h3><p>{project.desc}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}
+            {PROJECTS.map((project) => <article className="project-card reveal" key={project.no}><Placeholder title={project.title} src={project.image} /><div className="project-body"><span className="project-no">MODULE / {project.no}</span><h3>{project.title}</h3><p>{project.desc}</p></div></article>)}
           </div>
         </div>
       </section>

@@ -46,10 +46,20 @@ export default function HeroSection() {
               <p>为运营、设计与赛事，提供可直接调用的生产管线</p>
             </div>
           </div>
-          <div className="bg-shot reveal">
-            <figure className="shot3d">
-              <div className="shot3d-frame"><img src="/projects/flowx/platform-home-v17.png" alt="FlowX 内容制作中心 V1.7.0 首页与应用运行数据" width="2048" height="1152" /></div>
-            </figure>
+          <div className="bg-shot reveal" id="platform-demo">
+            <video
+              className="platform-demo-video"
+              controls
+              playsInline
+              preload="none"
+              poster="/projects/flowx/platform-demo-poster.jpg"
+              width="1920"
+              height="1080"
+              aria-label="FlowX 平台功能演示"
+            >
+              <source src="/projects/flowx/platform-demo.mp4" type="video/mp4" />
+              <a href="/projects/flowx/platform-demo.mp4">查看 FlowX 平台功能演示视频</a>
+            </video>
           </div>
         </div>
         <div className="container platform-overview reveal">

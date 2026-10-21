@@ -10,6 +10,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .hero-actions { display: flex; align-items: center; gap: 30px; margin-top: 30px; }
 .hero-scroll { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: .2em; color: var(--dim); white-space: nowrap; }
 .hero-scroll span { display: block; margin-top: 10px; font-size: 16px; color: var(--green); }
+#platform-demo { min-width: 0; scroll-margin-top: 88px; }
+.platform-demo-video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #000; border: 1px solid var(--line); border-radius: 8px; }
+.platform-demo-video:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
+.marketing-demo { margin: 0 0 32px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; }
+.marketing-demo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 .bg-copy .eyebrow { display: block; margin-bottom: 24px; }
 .bg-title { font-size: clamp(32px, 3.2vw, 48px); }
 .bg-title span { display: block; margin-top: 12px; font-size: .65em; line-height: 1.45; }
@@ -131,6 +136,26 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .split-copy .case-learning { margin: 26px 0 0; color: var(--green); font-size: 13px; }
 .dynamic-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; align-items: start; }
 .dynamic-examples img { display: block; width: 100%; border-radius: 12px; }
+.dynamic-case { grid-template-columns: minmax(0, 1fr); gap: 40px; scroll-margin-top: 88px; }
+.dynamic-case-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center; }
+.dynamic-case .split-copy h2 { font-size: 40px; line-height: 1.35; letter-spacing: 0; }
+.dynamic-case .mini-compare { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.dynamic-case .mini-compare > div { min-height: 132px; }
+.dynamic-case .mini-compare b { font-size: 20px; line-height: 1.5; }
+.dynamic-demo { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; }
+.dynamic-demo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.dynamic-case .dynamic-proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: start; }
+.dynamic-case .dynamic-examples { margin-top: 0; }
+@media (max-width: 980px) {
+  .dynamic-case-intro { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+@media (max-width: 680px) {
+  .dynamic-case { gap: 24px; }
+  .dynamic-case .split-copy h2 { font-size: 28px; }
+  .dynamic-case .mini-compare { gap: 16px; }
+  .dynamic-case .mini-compare b { font-size: 17px; }
+  .dynamic-case .dynamic-proof { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
 .template-case { padding-top: 88px; }
 .template-case-head { grid-template-columns: 1fr; }
 .template-proof-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }

@@ -59,6 +59,16 @@ export default function MainCase() {
 
         <article className="chapter result-chapter">
           <ChapterHead eyebrow="04 / 验证结果" title="一次提交，" highlight="交付多规格成品" />
+          <figure className="marketing-demo reveal">
+            <img
+              src="/projects/flowx/marketing-multi-size-ab-skill.gif"
+              alt="买量营销操作演示：上传风格参考，配置多规格与 A/B 双版，并复用 Skill"
+              width="1040"
+              height="585"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
           <div className="case-result reveal">
             {CASE_RESULT.map((item) => (
               <div className="case-res" key={item.label}>

@@ -229,8 +229,12 @@
 .agent-shot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .agent-shot .placeholder.filled { min-height: 0; border-radius: 16px; }
 .agent-shot .placeholder.filled img { display: block; width: 100%; height: auto; }
+.agent-demo-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.agent-demo-stack figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; }
+.agent-demo-stack img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
 
 @media (max-width: 700px) {
+  .agent-demo-stack { grid-template-columns: 1fr; gap: 16px; }
   .agent-shot-grid { grid-template-columns: 1fr; gap: 16px; }
 }
 

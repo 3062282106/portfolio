@@ -126,11 +126,9 @@ export const PROJECTS = [
   { no: "01", title: "AI 分镜助手", desc: "将脚本拆解为分镜，把图像与视频生成衔接为异步任务。", tags: ["脚本拆解", "视频生成", "异步任务"], image: "/projects/分镜.png" },
   { no: "02", title: "H5 组件生成", desc: "按页面布局与参考风格生成组件，适配不同活动的视觉需求。", tags: ["组件生成", "布局匹配", "风格跟随"], image: "/projects/H5.png" },
   { no: "03", title: "可视化节点画布", desc: "将多步素材处理组织为节点流程，集中管理输入、状态与产物。", tags: ["节点编排", "状态持久化", "工作流"], image: "/projects/无限画布.png" },
-  { no: "04", title: "智能扩图与局部重绘", desc: "以选区与遮罩明确修改范围，支持画面延展及局部编辑。", tags: ["Inpaint", "Mask", "任务恢复"], image: "/projects/智能扩图.png" },
-  { no: "05", title: "角色三视图生成", desc: "将多视角生成封装为批量任务，关注角色一致性与失败兜底。", tags: ["一致性", "批量生成", "失败兜底"], image: "/projects/角色三视图.png" },
-  { no: "06", title: "Logo 创作模块", desc: "内置六类风格模板，支持 Logo 创作及配套品牌延展。", tags: ["配套延展", "多尺寸", "多模型"], image: "/projects/logo.png" },
-  { no: "07", title: "H5 智能制作", desc: "上传 KV 参考图，生成组件库并自动切图、打包交付。", tags: ["KV 参考图", "组件生成", "生产可用"], image: "/projects/H5智能制作.png" },
-  { no: "08", title: "智能定妆照", desc: "封装定妆照、人物三视图与换衣流程，支持批量处理。", tags: ["质感保留", "批量处理", "肤色矫正"], image: "/projects/定妆照.png" },
+  { no: "04", title: "Logo 创作模块", desc: "内置六类风格模板，支持 Logo 创作及配套品牌延展。", tags: ["配套延展", "多尺寸", "多模型"], image: "/projects/logo.png" },
+  { no: "05", title: "宣发物料自动化管线", desc: "上传 KV 参考图，生成组件库并自动切图、打包交付。", tags: ["KV 参考图", "组件生成", "生产可用"], image: "/projects/H5智能制作.png" },
+  { no: "06", title: "智能定妆照", desc: "封装定妆照、人物三视图与换衣流程，支持批量处理。", tags: ["质感保留", "批量处理", "肤色矫正"], image: "/projects/定妆照.png" },
 ];
 
 export const DYNAMIC_GIF_COLS = [

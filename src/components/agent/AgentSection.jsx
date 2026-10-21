@@ -27,7 +27,14 @@ export default function AgentSection() {
         <Guardrails />
         <div className="agent-shot reveal">
           <div className="case-proof-heading"><h3>真实任务与交付界面</h3><span>自然语言入口 · 批量生成 · 结果验收</span></div>
-          <Placeholder title="Agent 小奈的自然语言任务入口与业务场景推荐" src="/projects/agent-chat-home.webp" />
+          <div className="agent-demo-stack">
+            <figure>
+              <img src="/projects/flowx/agent-xiaonai-launch.gif" alt="Agent 小奈上线演示：在平台内描述需求，完成素材生产与交付" width="1200" height="675" loading="lazy" decoding="async" />
+            </figure>
+            <figure>
+              <img src="/projects/flowx/agent-group-delivery.gif" alt="群聊协作演示：带图向小奈提出需求，生成结果链接回传群聊" width="1200" height="675" loading="lazy" decoding="async" />
+            </figure>
+          </div>
           <details className="evidence-details">
             <summary>查看批量模板替换与人物生成任务 <span aria-hidden="true">＋</span></summary>
             <div className="agent-shot-grid">
