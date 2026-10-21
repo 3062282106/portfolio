@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/check-asset-sizes.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "export-pdf": "node scripts/export-portfolio-pdf.mjs"
