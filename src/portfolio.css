@@ -160,8 +160,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .template-case-head { grid-template-columns: 1fr; }
 .template-proof-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
 .template-case[id] { scroll-margin-top: 88px; }
-.template-team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.template-team-grid { display: grid; grid-template-columns: repeat(4, minmax(200px, 1fr)); gap: 20px; min-width: 0; overflow-x: auto; }
 .template-team-grid img { display: block; width: 100%; height: auto; }
+.team-poster-trigger { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.team-poster-trigger:focus-visible { outline: 2px solid var(--green); outline-offset: -3px; }
+.team-poster-preview { margin: auto; padding: 0; border: 0; overflow: hidden; background: #0b0f0c; }
+.team-poster-preview::backdrop { background: rgb(0 0 0 / 85%); }
+.team-poster-preview img { display: block; width: auto; height: auto; max-width: min(1440px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); }
+.team-poster-preview button { position: absolute; inset: 12px 12px auto auto; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgb(255 255 255 / 50%); border-radius: 50%; color: #fff; background: rgb(0 0 0 / 75%); font-size: 25px; cursor: pointer; }
 @media (max-width: 680px) {
   .template-team-grid { gap: 12px; }
 }
@@ -176,6 +182,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .capability-overview + .container .project-grid { margin-top: 0; }
 .project-card .placeholder.filled { aspect-ratio: 16 / 10; background: #0b0f0c; }
 .project-card .placeholder.filled img { height: 100%; object-fit: contain; }
+.canvas-demo-section { margin-top: 56px; }
+.canvas-demo-section > h2 { margin: 0; scroll-margin-top: 88px; font-size: clamp(30px, 4vw, 48px); font-weight: 560; letter-spacing: -.035em; }
+.canvas-demos { margin-top: 48px; scroll-margin-top: 88px; }
+.canvas-demo-section > .canvas-demos:first-of-type { margin-top: 24px; }
+.canvas-demos article { min-width: 0; }
+.canvas-demos .project-body { padding: 0 0 16px; }
+.canvas-demos .project-body h3 { margin-top: 0; }
+.canvas-demos .platform-demo-video, .template-proof-grid .platform-demo-video { border: 0; }
+@media (min-width: 1024px) {
+  .workflow-demos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 .about-scene { margin-top: 64px; padding-top: 64px; background: transparent; }
 .strength-card { min-height: 228px; }
 .strength-card h3 { margin-top: 44px; }

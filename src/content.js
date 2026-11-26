@@ -125,10 +125,21 @@ export const MAIN_RESULTS = [
 export const PROJECTS = [
   { no: "01", title: "AI 分镜助手", desc: "将脚本拆解为分镜，把图像与视频生成衔接为异步任务。", tags: ["脚本拆解", "视频生成", "异步任务"], image: "/projects/分镜.png" },
   { no: "02", title: "H5 组件生成", desc: "按页面布局与参考风格生成组件，适配不同活动的视觉需求。", tags: ["组件生成", "布局匹配", "风格跟随"], image: "/projects/H5.png" },
-  { no: "03", title: "可视化节点画布", desc: "将多步素材处理组织为节点流程，集中管理输入、状态与产物。", tags: ["节点编排", "状态持久化", "工作流"], image: "/projects/无限画布.png" },
+  { no: "03", title: "字效设计", desc: "从古风、金属、霓虹等风格中选择，为游戏标题和活动主视觉生成字效。", image: "/projects/flowx/ai-game-title-styles.webp" },
   { no: "04", title: "Logo 创作模块", desc: "内置六类风格模板，支持 Logo 创作及配套品牌延展。", tags: ["配套延展", "多尺寸", "多模型"], image: "/projects/logo.png" },
   { no: "05", title: "宣发物料自动化管线", desc: "上传 KV 参考图，生成组件库并自动切图、打包交付。", tags: ["KV 参考图", "组件生成", "生产可用"], image: "/projects/H5智能制作.png" },
   { no: "06", title: "智能定妆照", desc: "封装定妆照、人物三视图与换衣流程，支持批量处理。", tags: ["质感保留", "批量处理", "肤色矫正"], image: "/projects/定妆照.png" },
+];
+
+export const CANVAS_DEMOS = [
+  { title: "小游戏画布", desc: "以参考图拓展同风格游戏界面，拆分按钮和文字层，导出整图或独立素材供开发使用。", video: "/projects/flowx/mini-game-canvas-demo.mp4", poster: "/projects/flowx/mini-game-canvas-poster.webp" },
+  { title: "无限画布", desc: "用节点串联出图、3D 导演台运镜、双参考视频生成和补帧，在一张画布上完成从构思到成片的流程。", video: "/projects/flowx/infinite-canvas-demo.mp4", poster: "/projects/flowx/infinite-canvas-poster.webp" },
+];
+
+export const WORKFLOW_DEMOS = [
+  { title: "资源位", video: "/projects/flowx/vfx-kv-extend.mp4", poster: "/projects/flowx/vfx-kv-extend-poster.webp" },
+  { title: "原位超级拆分", video: "/projects/flowx/vfx-image-split.mp4", poster: "/projects/flowx/vfx-image-split-poster.webp" },
+  { title: "角色动作迁移", video: "/projects/flowx/vfx-motion-transfer.mp4", poster: "/projects/flowx/vfx-motion-transfer-poster.webp" },
 ];
 
 export const DYNAMIC_GIF_COLS = [

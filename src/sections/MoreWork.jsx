@@ -1,5 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import Placeholder from "../components/Placeholder.jsx";
-import { PROJECTS, RESUME_URL, STRENGTHS } from "../content.js";
+import { CANVAS_DEMOS, PROJECTS, RESUME_URL, STRENGTHS, WORKFLOW_DEMOS } from "../content.js";
 import SceneFuture from "./SceneFuture.jsx";
 import MarketEvidence from "./MarketEvidence.jsx";
 
@@ -11,6 +12,80 @@ const CAPABILITY_GROUPS = [
   { label: "渠道平台素材 · AI 管线", crop: [1392, 0, 428, 416], alt: "游戏图标生成与渠道商店图" },
   { label: "通用能力 · AI 管线", crop: [0, 452, 1820, 389], alt: "图像处理、Logo 创作、三视图、视频、字体与 3D 工具", wide: true },
 ];
+
+const TEAM_POSTERS = [
+  { file: "act", name: "ACT" },
+  { file: "arneb", name: "Arneb with WoG" },
+  { file: "ft", name: "FT" },
+  { file: "rival", name: "Rival Esports" },
+].map(({ file, name }) => ({ src: `/projects/flowx/template-team-${file}.png`, alt: `${name} 战队模板替换海报成品` }));
+
+function TeamPosters() {
+  const dialogRef = useRef(null);
+  const [poster, setPoster] = useState(null);
+
+  function openPoster(image) {
+    setPoster(image);
+    dialogRef.current.showModal();
+  }
+
+  return (
+    <>
+      <div className="template-team-grid">
+        {TEAM_POSTERS.map((image) => (
+          <figure key={image.src}>
+            <button className="team-poster-trigger" type="button" aria-label={`放大查看 ${image.alt}`} onClick={() => openPoster(image)}>
+              <img src={image.src} alt={image.alt} width="1920" height="1080" loading="lazy" decoding="async" />
+            </button>
+          </figure>
+        ))}
+      </div>
+      <dialog className="team-poster-preview" ref={dialogRef} aria-label={poster?.alt} onClose={() => setPoster(null)} onClick={(event) => {
+        if (event.target === event.currentTarget) event.currentTarget.close();
+      }}>
+        <button type="button" aria-label="关闭海报预览" onClick={() => dialogRef.current.close()}>×</button>
+        {poster && <img src={poster.src} alt={poster.alt} width="1920" height="1080" />}
+      </dialog>
+    </>
+  );
+}
+
+function DemoVideo({ title, video, poster }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const element = videoRef.current;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        element.play().catch(() => {});
+      } else {
+        element.pause();
+      }
+    }, { threshold: 0.2 });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video ref={videoRef} className="platform-demo-video" aria-label={`${title}演示`} controls muted loop playsInline preload="none" poster={poster}>
+      <source src={video} type="video/mp4" />
+      <a href={video}>查看{title}演示视频</a>
+    </video>
+  );
+}
+
+function DemoGrid({ id, demos, className = "" }) {
+  return (
+    <div className={`project-grid canvas-demos ${className}`} id={id}>
+      {demos.map((demo) => (
+        <article className="reveal" key={demo.title}>
+          <div className="project-body"><h3>{demo.title}</h3>{demo.desc && <p>{demo.desc}</p>}</div>
+          <DemoVideo {...demo} />
+        </article>
+      ))}
+    </div>
+  );
+}
 
 export default function MoreWork() {
   return (
@@ -45,16 +120,18 @@ export default function MoreWork() {
               <div><span className="eyebrow">04 / 表格驱动的模板批量替换</span><h2>模板驱动生产<br /><span>规模化内容交付</span></h2></div>
             </div>
             <div className="template-proof-grid reveal">
-              <figure><img src="/projects/flowx/template-replacement-demo.gif" alt="模板替换演示：同一套设计批量替换图片与文字，生成卡牌和图鉴素材" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
+              <figure>
+                <DemoVideo title="模板替换" video="/projects/flowx/template-swap-demo.mp4" poster="/projects/flowx/template-swap-demo-poster.webp" />
+              </figure>
               <figure><img src="/projects/模板替换-配置流程.webp" alt="模板批量替换的 Excel 数据、字体与图层配置界面" loading="lazy" decoding="async" /></figure>
-              <div className="template-team-grid">
-                <figure><img src="/projects/flowx/template-team-act.png" alt="ACT 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
-                <figure><img src="/projects/flowx/template-team-arneb.png" alt="Arneb with WoG 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
-                <figure><img src="/projects/flowx/template-team-ft.png" alt="FT 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
-                <figure><img src="/projects/flowx/template-team-rival.png" alt="Rival Esports 战队模板替换海报成品" width="1920" height="1080" loading="lazy" decoding="async" /></figure>
-              </div>
+              <TeamPosters />
             </div>
           </article>
+          <section className="canvas-demo-section" aria-labelledby="canvas-demo-heading">
+            <h2 className="reveal" id="canvas-demo-heading">画布与素材制作</h2>
+            <DemoGrid id="canvas-demos" demos={CANVAS_DEMOS} />
+            <DemoGrid id="workflow-demos" demos={WORKFLOW_DEMOS} className="workflow-demos" />
+          </section>
         </div>
       </section>
 
@@ -78,7 +155,12 @@ export default function MoreWork() {
         </figure>
         <div className="container">
           <div className="project-grid">
-            {PROJECTS.map((project) => <article className="project-card reveal" key={project.no}><Placeholder title={project.title} src={project.image} /><div className="project-body"><span className="project-no">MODULE / {project.no}</span><h3>{project.title}</h3><p>{project.desc}</p></div></article>)}
+            {PROJECTS.map((project) => (
+              <article className="project-card reveal" key={project.no}>
+                <Placeholder title={project.title} src={project.image} />
+                <div className="project-body"><span className="project-no">MODULE / {project.no}</span><h3>{project.title}</h3><p>{project.desc}</p></div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
